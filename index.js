@@ -5,8 +5,8 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import App from './components/App';
 import Home from './components/Home';
 import PageNotFound from './components/PageNotFound';
-import ExampleComponent from './components/ExampleComponent';
-import ExampleTwoDeepComponent from './components/ExampleTwoDeepComponent';
+import HashLinkPage from './components/HashLinkPage';
+
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -83,21 +83,39 @@ function redirectToDomain() {
 
 const routes = (
   // onEnter hook checks if a redirect is needed before App component is loaded
-  <Route path="/" mapMenuTitle="Home" component={App} onEnter={checkForRedirect}>
+  <Route path="/" component={App} onEnter={checkForRedirect}>
     <IndexRoute component={Home} />
-
-    <Route path="example" mapMenuTitle="Example" component={ExampleComponent}>
-      <Route path="two-deep" mapMenuTitle="Two Deep" component={ExampleTwoDeepComponent} />
-    </Route>
-
-    <Route path="*" mapMenuTitle="Page Not Found" component={PageNotFound} />
+    <Route path=":dynamicRouteBecasueWhyNot" component={HashLinkPage} />
+    <Route path="*" component={PageNotFound} />
   </Route>
 );
+
+function onUpdateFunctions() {
+  // call other onUpdate functions
+  // fooUpdate();
+  hashLinkScroll();
+}
+
+function hashLinkScroll() {
+  const { hash } = window.location;
+  if (typeof hash === 'string' && hash !== '') {
+    // push onto callback queue so it runs after the DOM is updated
+    // this is required when navigating from a different page so that
+    // the element is rendered on the page before trying to getElementById
+    setTimeout(() => {
+      const id = hash.replace('#', '');
+      const element = document.getElementById(id);
+      if (element) element.scrollIntoView();
+    }, 0);
+  }
+}
+
 
 render(
   <Router
     history={browserHistory}
     routes={routes}
+    onUpdate={onUpdateFunctions}
   />,
   document.getElementById('root')
 )
