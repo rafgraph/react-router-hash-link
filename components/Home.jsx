@@ -8,9 +8,9 @@ function Home() {
       <a href="https://github.com/rafrex/react-router-hash-link-scroll">
         https://github.com/rafrex/react-router-hash-link-scroll
       </a>
-      <div>Example built
-        with <a href="https://github.com/rafrex/react-github-pages">
-        React for GitHub Pages</a>
+      <div>Example built with {' '}
+        <a href="https://github.com/rafrex/spa-github-pages">
+        Single Page Apps for GitHub Pages</a>
       </div>
     <nav>
       <h3 className="list-heading">Goto example page:</h3>
