@@ -1,0 +1,121 @@
+/*reset*/
+html, body, nav, p, div, span, section, h1, h2, h3, ul, li, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+
+/*all pages style*/
+html {
+  background-color: rgb(0, 120, 0);
+}
+
+body {
+  font-family: helvetica neue, helvetica, sans-serif;;
+  font-weight: 300;
+  font-size: 16px;
+}
+
+#root {
+  min-height: 100vh;
+  min-width: 100vw;
+  background-color: #F0F0F0;
+}
+
+#home, #page-not-found, section {
+  box-sizing: border-box;
+  height: 100vh;
+  width: 100vw;
+  padding: 2.5vw 3.5vw 12vh 3.5vw;
+}
+
+h1 {
+  font-size: 24px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 2vh;
+}
+
+p {
+  margin: 5vh 0 7vh 0;
+}
+
+p > div {
+  margin-top: 2vh;
+}
+
+a {
+  border-bottom: 1px dotted rgb(0, 168, 0);
+  touch-action: none;
+  -ms-touch-action: none;
+}
+
+a:hover, a:active {
+  color: rgb(0, 144, 0);
+  border-bottom: 1px dotted #B0B0B0;
+}
+
+@media (hover: none) {
+  a:hover {
+    color: inherit;
+    border-bottom: 1px dotted rgb(0, 168, 0);
+  }
+}
+
+li {
+  list-style: none;
+  padding-left: 18px;
+  text-indent: -15px;
+  margin: 1vh 0;
+}
+
+li:before {
+  content: "\2013";
+  padding-right: 7px;
+}
+
+code {
+  font-family: monospace;
+  font-size: 15px;
+  padding-left: 2px;
+}
+
+
+/*home page style*/
+#repo-link {
+  font-size: 14px;
+}
+
+#built-with {
+  font-size: 12px;
+  margin-top: 10vh;
+  color: #A0A0A0;
+}
+
+
+/*example page style*/
+#section-one {
+  background-color: #E0E0E0;
+}
+
+#section-two {
+  background-color: #D0D0D0;
+}
+
+#section-three {
+  background-color: #C0C0C0;
+}
