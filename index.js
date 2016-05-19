@@ -16,18 +16,13 @@ const routes = (
   </Route>
 );
 
-function onUpdateFunctions() {
-  // call other onUpdate functions
-  // fooUpdate();
-  hashLinkScroll();
-}
 
 function hashLinkScroll() {
   const { hash } = window.location;
-  if (typeof hash === 'string' && hash !== '') {
-    // push onto callback queue so it runs after the DOM is updated
+  if (hash !== '') {
+    // Push onto callback queue so it runs after the DOM is updated,
     // this is required when navigating from a different page so that
-    // the element is rendered on the page before trying to getElementById
+    // the element is rendered on the page before trying to getElementById.
     setTimeout(() => {
       const id = hash.replace('#', '');
       const element = document.getElementById(id);
@@ -36,12 +31,11 @@ function hashLinkScroll() {
   }
 }
 
-
 render(
   <Router
     history={browserHistory}
     routes={routes}
-    onUpdate={onUpdateFunctions}
+    onUpdate={hashLinkScroll}
   />,
   document.getElementById('root')
 )
