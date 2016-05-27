@@ -69,8 +69,8 @@ a:hover, a:active {
   border-bottom: 1px dotted #B0B0B0;
 }
 
-@media (hover: none), (-webkit-hover: none), (-moz-hover: none ), (-ms-hover: none) {
-  a:hover {
+@media (hover: none), (hover: on-demand) {
+  a:hover, a:active {
     color: inherit;
     border-bottom: 1px dotted rgb(0, 168, 0);
   }
