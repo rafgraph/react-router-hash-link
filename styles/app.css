@@ -16,6 +16,10 @@ html, body, nav, p, div, span, section, h1, h2, h3, ul, li, a {
 /*all pages style*/
 html {
   background-color: rgb(0, 120, 0);
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
 }
 
 body {
