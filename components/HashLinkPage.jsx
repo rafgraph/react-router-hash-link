@@ -1,5 +1,9 @@
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
+
+const propTypes = {
+  location: PropTypes.object.isRequired,
+};
 
 function HashLinkPage({ location }) {
   return (
@@ -34,5 +38,7 @@ function HashLinkPage({ location }) {
     </div>
   );
 }
+
+HashLinkPage.propTypes = propTypes;
 
 export default HashLinkPage;

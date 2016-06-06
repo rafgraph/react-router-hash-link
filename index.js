@@ -39,4 +39,4 @@ render(
     onUpdate={hashLinkScroll}
   />,
   document.getElementById('root')
-)
+);

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router';
 
 function Header() {
   return (
@@ -8,7 +7,7 @@ function Header() {
       <a
         id="repo-link"
         href="https://github.com/rafrex/react-router-hash-link-scroll"
-        >
+      >
         https://github.com/rafrex/react-router-hash-link-scroll
       </a>
     </div>
@@ -19,7 +18,8 @@ function BuiltWith() {
   return (
     <div id="built-with">Site built with {' '}
       <a href="https://github.com/rafrex/spa-github-pages">
-        Single Page Apps for GitHub Pages</a>
+        Single Page Apps for GitHub Pages
+      </a>
     </div>
   );
 }
