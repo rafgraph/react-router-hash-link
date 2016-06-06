@@ -1,9 +1,8 @@
 /*reset*/
-html, body, nav, p, div, span, section, h1, h2, h3, ul, li, a {
+html, body, div, span, a, p, ul, li, h1, h2, h3, nav, section {
   margin: 0;
   border: 0;
   padding: 0;
-  outline: 0;
   box-sizing: inherit;
   font: inherit;
   text-decoration: inherit;
@@ -12,28 +11,66 @@ html, body, nav, p, div, span, section, h1, h2, h3, ul, li, a {
   background: transparent;
 }
 
-
-/*all pages style*/
 html {
   background-color: rgb(0, 120, 0);
-  text-size-adjust: none;
-  -webkit-text-size-adjust: none;
-  -moz-text-size-adjust: none;
-  -ms-text-size-adjust: none;
 }
 
 body {
   font-family: helvetica neue, helvetica, sans-serif;;
   font-weight: 300;
   font-size: 16px;
+  letter-spacing: 0.025em;
+
+  text-size-adjust: none;
+  -webkit-text-size-adjust: none;
+  -moz-text-size-adjust: none;
+  -ms-text-size-adjust: none;
 }
 
+/*root div in index.html*/
 #root {
   min-height: 100vh;
   min-width: 100vw;
   background-color: #F0F0F0;
 }
 
+/*links*/
+a {
+  border-bottom: 1px dotted rgb(0, 168, 0);
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+}
+
+a:hover, a:active {
+  color: black;
+  border-bottom: 1px solid rgb(0, 168, 0);
+}
+
+.current-input-touch a:hover {
+  color: inherit;
+  border-bottom: 1px dotted rgb(0, 168, 0);
+}
+
+.current-input-touch a:active {
+  color: black;
+  border-bottom: 1px dashed rgb(0, 168, 0);
+}
+
+/*custom bullets*/
+li {
+  list-style: none;
+  padding-left: 18px;
+  text-indent: -15px;
+  margin: 0.5vh 0;
+}
+
+li:before {
+  content: "\2013";
+  padding-right: 7px;
+}
+
+
+/*style for multiple pages*/
 #home, #page-not-found, section {
   box-sizing: border-box;
   height: 100vh;
@@ -52,42 +89,6 @@ h2 {
 h3 {
   font-size: 18px;
   margin-top: 2vh;
-}
-
-p {
-  margin: 5vh 0 7vh 0;
-}
-
-p > div {
-  margin-top: 2vh;
-}
-
-a {
-  border-bottom: 1px dotted rgb(0, 168, 0);
-  touch-action: none;
-  -ms-touch-action: none;
-}
-
-a:hover, a:active {
-  color: rgb(0, 144, 0);
-  border-bottom: 1px dotted #B0B0B0;
-}
-
-.current-input-touch a:hover, .current-input-touch a:active {
-  color: inherit;
-  border-bottom: 1px dotted rgb(0, 168, 0);
-}
-
-li {
-  list-style: none;
-  padding-left: 18px;
-  text-indent: -15px;
-  margin: 1vh 0;
-}
-
-li:before {
-  content: "\2013";
-  padding-right: 7px;
 }
 
 code {
@@ -120,4 +121,14 @@ code {
 
 #section-three {
   background-color: #C0C0C0;
+}
+
+
+/*pagee not found style*/
+p {
+  margin: 5vh 0 7vh 0;
+}
+
+p > div {
+  margin-top: 2vh;
 }
