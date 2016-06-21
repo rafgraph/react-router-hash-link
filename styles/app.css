@@ -30,7 +30,6 @@ body {
 /*root div in index.html*/
 #root {
   min-height: 100vh;
-  min-width: 100vw;
   background-color: #F0F0F0;
 }
 
@@ -73,8 +72,6 @@ li:before {
 /*style for multiple pages*/
 #home, #page-not-found, section {
   box-sizing: border-box;
-  height: 100vh;
-  width: 100vw;
   padding: 2.5vw 3.5vw 12vh 3.5vw;
 }
 
@@ -111,6 +108,10 @@ code {
 
 
 /*example page style*/
+section {
+  height: 100vh;
+}
+
 #section-one {
   background-color: #E0E0E0;
 }
