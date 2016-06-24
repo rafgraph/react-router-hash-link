@@ -2,7 +2,7 @@
 
 [Live example][liveExample]
 
-This is a solution to [React Router's][reactRouter] issue of not scrolling to `#hash-links` when use using the `<Link>` component to navigate. It uses a Router `onUpdate` hook and calls `element.scrollIntoView()` if a `#hash` is present in the url.  
+This is a solution to [React Router's issue of not scrolling to `#hash-links`][reactRouterIssue] when use using the `<Link>` component to navigate. It uses a Router `onUpdate` hook and calls `element.scrollIntoView()` if a `#hash` is present in the url.  
 
 Since it's defined on the `Router` component, the scroll functionality will work with every route, and it works when linking to a `#hash` on the current route, or when linking to a `#hash` while navigating to a different route.
 
@@ -43,6 +43,6 @@ render(
 ```
 
 
-[reactRouter]: https://github.com/reactjs/react-router
+[reactRouterIssue]: https://github.com/reactjs/react-router/issues/394#issuecomment-220221604
 [liveExample]: http://react-router-hash-link-scroll.rafrex.com/
 [spaGHP]: https://github.com/rafrex/spa-github-pages
