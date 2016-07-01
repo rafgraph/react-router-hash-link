@@ -85,7 +85,7 @@ h2 {
 
 h3 {
   font-size: 18px;
-  margin-top: 2vh;
+  margin-top: 2.5vh;
 }
 
 code {
@@ -97,7 +97,9 @@ code {
 
 /*home page style*/
 #repo-link {
+  margin-top: 2px;
   font-size: 14px;
+  color: #A0A0A0;
 }
 
 #built-with {
@@ -125,7 +127,7 @@ section {
 }
 
 
-/*pagee not found style*/
+/*page not found style*/
 p {
   margin: 5vh 0 7vh 0;
 }
