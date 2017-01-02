@@ -1,19 +1,17 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import 'current-input';
 
-import App from './components/App';
-import Home from './components/Home';
-import PageNotFound from './components/PageNotFound';
-import HashLinkPage from './components/HashLinkPage';
+import App from './App';
+import Home from './Home';
+import HashLinkPage from './HashLinkPage';
 
 
 const routes = (
   <Route path="/" component={App}>
     <IndexRoute component={Home} />
     <Route path=":dynamicRouteBecasueWhyNot" component={HashLinkPage} />
-    <Route path="*" component={PageNotFound} />
+    <Route path="*" onEnter={(nextState, replace) => replace({ pathname: '/' })} />
   </Route>
 );
 
