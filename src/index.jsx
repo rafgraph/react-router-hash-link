@@ -38,5 +38,5 @@ render(
     routes={routes}
     onUpdate={hashLinkScroll}
   />,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
