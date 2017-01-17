@@ -18,6 +18,7 @@ export const linkStyle = {
     outlineOffset: '2px',
     color: 'black',
   },
+  touchActiveTapOnly: true,
 };
 
 export const childLinkStyle = {

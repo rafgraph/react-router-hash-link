@@ -31,6 +31,7 @@ function Home() {
             interactiveChild
             focus={{}}
             touchActive={{}}
+            touchActiveTapOnly
             href="https://github.com/rafrex/spa-github-pages"
           >
             Site built with {' '}
@@ -45,6 +46,7 @@ function Home() {
             interactiveChild
             focus={{}}
             touchActive={{}}
+            touchActiveTapOnly
             href="http://www.rafaelpedicini.com"
           >
             Code and concept by {' '}
