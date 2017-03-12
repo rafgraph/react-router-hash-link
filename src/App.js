@@ -1,10 +1,14 @@
 import React, { PropTypes } from 'react';
+import { Switch, Route } from 'react-router-dom';
+
+import Home from './Home';
+import HashLinkPage from './HashLinkPage';
 
 const propTypes = {
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
 };
 
-function App({ children }) {
+function App() {
   return (
     <div
       style={{
@@ -18,7 +22,10 @@ function App({ children }) {
         textSizeAdjust: 'none',
       }}
     >
-      {children}
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route component={HashLinkPage} />
+      </Switch>
     </div>
   );
 }
