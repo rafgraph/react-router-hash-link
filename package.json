@@ -1,0 +1,23 @@
+{
+  "name": "react-router-hash-link-scroll",
+  "version": "0.1.0",
+  "description": "Hash link scroll functionality for React Router v4",
+  "main": "lib/index.js",
+  "scripts": {
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rafrex/react-router-hash-link-scroll.git"
+  },
+  "keywords": [
+    "react-router",
+    "link",
+    "hash-link"
+  ],
+  "author": "Rafael Pedicini <code@rafrex.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/rafrex/react-router-hash-link-scroll/issues"
+  },
+  "homepage": "https://github.com/rafrex/react-router-hash-link-scroll#readme"
+}
