@@ -7,6 +7,10 @@
     "build": "rm -rf lib && babel src -d lib --presets=latest,react --plugins=transform-object-rest-spread",
     "prepublish": "npm run build"
   },
+  "files": [
+    "src",
+    "lib"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rafrex/react-router-hash-link-scroll.git"
