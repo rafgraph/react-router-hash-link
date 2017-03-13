@@ -22,6 +22,10 @@
     "url": "https://github.com/rafrex/react-router-hash-link-scroll/issues"
   },
   "homepage": "https://github.com/rafrex/react-router-hash-link-scroll#readme",
+  "peerDependencies": {
+    "react": "^15.0.0",
+    "react-router-dom": "^4.0.0"
+  },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
