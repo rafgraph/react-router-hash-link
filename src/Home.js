@@ -1,7 +1,7 @@
 import React from 'react';
 import Interactive from 'react-interactive';
-import { Link } from 'react-router';
-import { li, linkStyle, childLinkStyle } from './style';
+import { HashLink as Link } from 'react-router-hash-link';
+import { Li, linkStyle, childLinkStyle } from './style';
 
 function Home() {
   return (
@@ -11,16 +11,16 @@ function Home() {
         <Interactive
           as="a"
           {...linkStyle}
-          href="https://github.com/rafrex/react-router-hash-link-scroll"
-        >https://github.com/rafrex/react-router-hash-link-scroll</Interactive>
+          href="https://github.com/rafrex/react-router-hash-link"
+        >https://github.com/rafrex/react-router-hash-link</Interactive>
       </div>
 
       <nav>
         <h3 style={{ fontSize: '18px', marginTop: '2.5vh' }}>Go to example page:</h3>
         <ul>
-          {li(<Interactive as={Link} {...linkStyle} to="/foo#section-one">Section One</Interactive>)}
-          {li(<Interactive as={Link} {...linkStyle} to="/bar#section-two">Section Two</Interactive>)}
-          {li(<Interactive as={Link} {...linkStyle} to="/baz#section-three">Section Three</Interactive>)}
+          {<Li><Interactive as={Link} {...linkStyle} to="/foo#section-one">Section One</Interactive></Li>}
+          {<Li><Interactive as={Link} {...linkStyle} to="/bar#section-two">Section Two</Interactive></Li>}
+          {<Li><Interactive as={Link} {...linkStyle} to="/baz#section-three">Section Three</Interactive></Li>}
         </ul>
       </nav>
 
