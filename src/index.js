@@ -1,22 +1,24 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
-function hashLinkScroll() {
+function hashLinkScroll(hashFragment) {
   // Push onto callback queue so it runs after the DOM is updated
   setTimeout(() => {
-    const { hash } = window.location;
-    if (hash !== '') {
-      const id = hash.replace('#', '');
-      const element = document.getElementById(id);
-      if (element) element.scrollIntoView();
-    }
+    const element = document.getElementById(hashFragment);
+    if (element) element.scrollIntoView();
   }, 0);
 }
 
 export function HashLink(props) {
   function handleClick(e) {
     if (props.onClick) props.onClick(e);
-    hashLinkScroll();
+    let hashFragment = '';
+    if (typeof props.to === 'string') {
+      hashFragment = props.to.split('#').slice(1).join('#');
+    } else if (typeof props.to === 'object' && props.to.hash) {
+      hashFragment = props.to.hash.replace('#', '');
+    }
+    if (hashFragment) hashLinkScroll(hashFragment);
   }
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
@@ -24,4 +26,8 @@ export function HashLink(props) {
 HashLink.PropTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
+  to: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.object,
+  ]),
 };
