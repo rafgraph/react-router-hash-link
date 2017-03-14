@@ -30,7 +30,7 @@ export const childLinkStyle = {
 };
 
 
-export const li = content => (
+export const Li = props => (
   <li
     style={{
       paddingLeft: '18px',
@@ -40,6 +40,10 @@ export const li = content => (
     }}
   >
     <span style={{ paddingRight: '7px' }}>&ndash;</span>
-    {content}
+    {props.children}
   </li>
 );
+
+Li.propTypes = {
+  children: React.PropTypes.node,
+};

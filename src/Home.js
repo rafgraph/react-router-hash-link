@@ -1,7 +1,7 @@
 import React from 'react';
 import Interactive from 'react-interactive';
 import { HashLink as Link } from 'react-router-hash-link';
-import { li, linkStyle, childLinkStyle } from './style';
+import { Li, linkStyle, childLinkStyle } from './style';
 
 function Home() {
   return (
@@ -18,9 +18,9 @@ function Home() {
       <nav>
         <h3 style={{ fontSize: '18px', marginTop: '2.5vh' }}>Go to example page:</h3>
         <ul>
-          {li(<Interactive as={Link} {...linkStyle} to="/foo#section-one">Section One</Interactive>)}
-          {li(<Interactive as={Link} {...linkStyle} to="/bar#section-two">Section Two</Interactive>)}
-          {li(<Interactive as={Link} {...linkStyle} to="/baz#section-three">Section Three</Interactive>)}
+          {<Li><Interactive as={Link} {...linkStyle} to="/foo#section-one">Section One</Interactive></Li>}
+          {<Li><Interactive as={Link} {...linkStyle} to="/bar#section-two">Section Two</Interactive></Li>}
+          {<Li><Interactive as={Link} {...linkStyle} to="/baz#section-three">Section Three</Interactive></Li>}
         </ul>
       </nav>
 
