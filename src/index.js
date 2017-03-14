@@ -23,7 +23,7 @@ export function HashLink(props) {
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
 
-HashLink.PropTypes = {
+HashLink.propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   to: PropTypes.oneOfType([
