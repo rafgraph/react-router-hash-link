@@ -18,7 +18,8 @@
   "keywords": [
     "react-router",
     "link",
-    "hash-link"
+    "hash-link",
+    "scroll"
   ],
   "author": "Rafael Pedicini <code@rafrex.com>",
   "license": "MIT",
