@@ -16,6 +16,7 @@
     "url": "git+https://github.com/rafrex/react-router-hash-link.git"
   },
   "keywords": [
+    "react",
     "react-router",
     "link",
     "hash-link",
