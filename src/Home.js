@@ -1,7 +1,6 @@
 import React from 'react';
 import Interactive from 'react-interactive';
-// import { Link } from 'react-router-dom';
-import { HashLink as Link } from './HashLink';
+import { HashLink as Link } from 'react-router-hash-link';
 import { li, linkStyle, childLinkStyle } from './style';
 
 function Home() {
@@ -12,8 +11,8 @@ function Home() {
         <Interactive
           as="a"
           {...linkStyle}
-          href="https://github.com/rafrex/react-router-hash-link-scroll"
-        >https://github.com/rafrex/react-router-hash-link-scroll</Interactive>
+          href="https://github.com/rafrex/react-router-hash-link"
+        >https://github.com/rafrex/react-router-hash-link</Interactive>
       </div>
 
       <nav>

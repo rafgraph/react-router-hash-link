@@ -1,12 +1,8 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 
 import Home from './Home';
 import HashLinkPage from './HashLinkPage';
-
-const propTypes = {
-  // children: PropTypes.element.isRequired,
-};
 
 function App() {
   return (
@@ -29,7 +25,5 @@ function App() {
     </div>
   );
 }
-
-App.propTypes = propTypes;
 
 export default App;
