@@ -23,27 +23,27 @@ function HashLinkPage({ location }) {
         <h2 style={h2Style}>Section One</h2>
         <h3 style={h3Style}>Go to:</h3>
         <ul>
-          {<Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>}
+          <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
         </ul>
       </section>
       <section style={objectAssign({ backgroundColor: '#D0D0D0' }, sectionStyle)} id="section-two">
         <h2 style={h2Style}>Section Two</h2>
         <h3 style={h3Style}>Go to:</h3>
         <ul>
-          {<Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>}
+          <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
         </ul>
       </section>
       <section style={objectAssign({ backgroundColor: '#C0C0C0' }, sectionStyle)} id="section-three">
         <h2 style={h2Style}>Section Three</h2>
         <h3 style={h3Style}>Go to:</h3>
         <ul>
-          {<Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>}
-          {<Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>}
+          <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
+          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
         </ul>
       </section>
     </div>
