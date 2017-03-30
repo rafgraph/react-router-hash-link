@@ -5,7 +5,7 @@ function hashLinkScroll(hashFragment) {
   // Push onto callback queue so it runs after the DOM is updated
   setTimeout(() => {
     const element = document.getElementById(hashFragment);
-    if (element) element.scrollIntoView();
+    if (element !== null) element.scrollIntoView();
   }, 0);
 }
 
@@ -15,10 +15,10 @@ export function HashLink(props) {
     let hashFragment = '';
     if (typeof props.to === 'string') {
       hashFragment = props.to.split('#').slice(1).join('#');
-    } else if (typeof props.to === 'object' && props.to.hash) {
+    } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
       hashFragment = props.to.hash.replace('#', '');
     }
-    if (hashFragment) hashLinkScroll(hashFragment);
+    if (hashFragment !== '') hashLinkScroll(hashFragment);
   }
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
