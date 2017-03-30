@@ -1,24 +1,61 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router-dom';
 
-function hashLinkScroll(hashFragment) {
+let hashFragment = '';
+let observer = null;
+let asyncTimer = null;
+
+function reset() {
+  hashFragment = '';
+  if (observer !== null) observer.disconnect();
+  if (asyncTimer !== null) {
+    window.clearTimeout(asyncTimer);
+    asyncTimer = null;
+  }
+}
+
+function getElAndScroll() {
+  const element = document.getElementById(hashFragment);
+  if (element !== null) {
+    element.scrollIntoView();
+    reset();
+    return true;
+  }
+  return false;
+}
+
+function setupMutationObserver() {
+  observer = new MutationObserver(getElAndScroll);
+}
+
+function hashLinkScroll() {
   // Push onto callback queue so it runs after the DOM is updated
   setTimeout(() => {
-    const element = document.getElementById(hashFragment);
-    if (element !== null) element.scrollIntoView();
+    if (getElAndScroll() === false) {
+      if (observer === null) setupMutationObserver();
+      observer.observe(document, { attributes: true, childList: true, subtree: true });
+      if (asyncTimer !== null) window.clearTimeout(asyncTimer);
+      // if the element doesn't show up in 10 seconds, stop checking
+      asyncTimer = window.setTimeout(() => {
+        reset();
+      }, 10000);
+    }
   }, 0);
 }
 
 export function HashLink(props) {
   function handleClick(e) {
     if (props.onClick) props.onClick(e);
-    let hashFragment = '';
+    let hash = '';
     if (typeof props.to === 'string') {
-      hashFragment = props.to.split('#').slice(1).join('#');
+      hash = props.to.split('#').slice(1).join('#');
     } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
-      hashFragment = props.to.hash.replace('#', '');
+      hash = props.to.hash.replace('#', '');
     }
-    if (hashFragment !== '') hashLinkScroll(hashFragment);
+    if (hash !== '') {
+      hashFragment = hash;
+      hashLinkScroll();
+    }
   }
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
