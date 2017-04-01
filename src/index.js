@@ -3,14 +3,14 @@ import { Link } from 'react-router-dom';
 
 let hashFragment = '';
 let observer = null;
-let asyncTimer = null;
+let asyncTimerId = null;
 
 function reset() {
   hashFragment = '';
   if (observer !== null) observer.disconnect();
-  if (asyncTimer !== null) {
-    window.clearTimeout(asyncTimer);
-    asyncTimer = null;
+  if (asyncTimerId !== null) {
+    window.clearTimeout(asyncTimerId);
+    asyncTimerId = null;
   }
 }
 
@@ -24,19 +24,16 @@ function getElAndScroll() {
   return false;
 }
 
-function setupMutationObserver() {
-  observer = new MutationObserver(getElAndScroll);
-}
-
 function hashLinkScroll() {
   // Push onto callback queue so it runs after the DOM is updated
-  setTimeout(() => {
+  window.setTimeout(() => {
     if (getElAndScroll() === false) {
-      if (observer === null) setupMutationObserver();
+      if (observer === null) {
+        observer = new MutationObserver(getElAndScroll);
+      }
       observer.observe(document, { attributes: true, childList: true, subtree: true });
-      if (asyncTimer !== null) window.clearTimeout(asyncTimer);
       // if the element doesn't show up in 10 seconds, stop checking
-      asyncTimer = window.setTimeout(() => {
+      asyncTimerId = window.setTimeout(() => {
         reset();
       }, 10000);
     }
@@ -46,16 +43,13 @@ function hashLinkScroll() {
 export function HashLink(props) {
   function handleClick(e) {
     if (props.onClick) props.onClick(e);
-    let hash = '';
+    reset();
     if (typeof props.to === 'string') {
-      hash = props.to.split('#').slice(1).join('#');
+      hashFragment = props.to.split('#').slice(1).join('#');
     } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
-      hash = props.to.hash.replace('#', '');
+      hashFragment = props.to.hash.replace('#', '');
     }
-    if (hash !== '') {
-      hashFragment = hash;
-      hashLinkScroll();
-    }
+    if (hashFragment !== '') hashLinkScroll();
   }
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
