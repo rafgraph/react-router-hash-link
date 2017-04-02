@@ -42,8 +42,8 @@ function hashLinkScroll() {
 
 export function HashLink(props) {
   function handleClick(e) {
-    if (props.onClick) props.onClick(e);
     reset();
+    if (props.onClick) props.onClick(e);
     if (typeof props.to === 'string') {
       hashFragment = props.to.split('#').slice(1).join('#');
     } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
