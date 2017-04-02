@@ -10,12 +10,12 @@ export default {
 
   module: {
     loaders: [
-      { test: /\.jsx?$/, exclude: /node_modules/, loader: 'babel' },
+      { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx'],
+    extensions: ['.js'],
   },
 
   plugins: process.argv.indexOf('-p') === -1 ? null : [
