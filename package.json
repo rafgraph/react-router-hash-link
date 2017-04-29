@@ -1,6 +1,6 @@
 {
   "name": "react-router-hash-link",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Hash link scroll functionality for React Router v4",
   "main": "lib/index.js",
   "scripts": {
