@@ -28,13 +28,16 @@
     "url": "https://github.com/rafrex/react-router-hash-link/issues"
   },
   "peerDependencies": {
-    "react": "^15.0.0",
-    "react-router-dom": "^4.0.0"
+    "react": "^15.5.0",
+    "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0"
+  },
+  "dependencies": {
+    "prop-types": "^15.5.8"
   }
 }
