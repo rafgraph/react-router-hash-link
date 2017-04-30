@@ -11,8 +11,8 @@ function Home() {
         <Interactive
           as="a"
           {...linkStyle}
-          href="https://github.com/rafrex/react-router-hash-link-scroll"
-        >https://github.com/rafrex/react-router-hash-link-scroll</Interactive>
+          href="https://github.com/rafrex/react-router-hash-link"
+        >https://github.com/rafrex/react-router-hash-link</Interactive>
       </div>
 
       <nav>

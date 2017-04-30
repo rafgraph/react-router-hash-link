@@ -6,6 +6,8 @@ This is a solution to [React Router v2/3's issue of not scrolling to `#hash-link
 
 Since it's defined on the `Router` component, the scroll functionality will work with every route, and it works when linking to a `#hash` on the current route, or when linking to a `#hash` while navigating to a different route.
 
+To see a live example, `git clone` this branch, `npm install`, and `npm start` - the example site will be available on port `8080`.
+
 ```javascript
 import React from 'react';
 import { render } from 'react-dom';
