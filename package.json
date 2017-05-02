@@ -5,7 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --presets=env,react --plugins=transform-object-rest-spread",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "dev": "npm link && babel src -d lib --watch --presets=env,react --plugins=transform-object-rest-spread"
   },
   "files": [
     "src",
