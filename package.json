@@ -3,7 +3,9 @@
   "private": true,
   "description": "Scoll to element on page with #hash link using React Router",
   "scripts": {
-    "start": "webpack-dev-server -d --inline --host 0.0.0.0 --history-api-fallback --progress"
+    "start-local": "npm link react-router-hash-link && npm start",
+    "start": "webpack-dev-server --devtool eval-source-map --host 0.0.0.0 --public 10.0.1.4:8080 --history-api-fallback --open",
+    "build": "npm unlink react-router-hash-link && npm install --save react-router-hash-link && webpack -p"
   },
   "repository": {
     "type": "git",
@@ -32,7 +34,7 @@
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-jsx-a11y": "^4.0.0",
     "eslint-plugin-react": "^6.10.3",
-    "webpack": "^2.3.3",
-    "webpack-dev-server": "^2.4.2"
+    "webpack": "^2.4.1",
+    "webpack-dev-server": "^2.4.5"
   }
 }

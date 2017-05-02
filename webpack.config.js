@@ -1,6 +1,6 @@
-import webpack from 'webpack';
+const webpack = require('webpack');
 
-export default {
+module.exports = {
   entry: `${__dirname}/src/index.js`,
   output: {
     path: `${__dirname}/build`,
@@ -9,19 +9,12 @@ export default {
   },
 
   module: {
-    loaders: [
+    rules: [
       { test: /\.js$/, exclude: /node_modules/, loader: 'babel-loader' },
     ],
   },
 
-  resolve: {
-    extensions: ['.js'],
-  },
-
-  plugins: process.argv.indexOf('-p') === -1 ? null : [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify('production'),
-    }),
+  plugins: process.argv.indexOf('-p') === -1 ? [] : [
     new webpack.optimize.UglifyJsPlugin({
       output: {
         comments: false,
