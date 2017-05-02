@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import Interactive from 'react-interactive';
 import { HashLink as Link } from 'react-router-hash-link';
 import objectAssign from 'object-assign';
