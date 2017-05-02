@@ -12,7 +12,7 @@
   "author": "Rafael Pedicini <code@rafrex.com>",
   "license": "MIT",
   "dependencies": {
-    "object-assign": "^4.1.0",
+    "object-assign": "^4.1.1",
     "react": "^15.4.1",
     "react-dom": "^15.4.1",
     "react-interactive": "^0.6.0",
