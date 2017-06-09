@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 let hashFragment = '';
 let observer = null;
 let asyncTimerId = null;
+let scrollOptions = {};
 
 function reset() {
   hashFragment = '';
@@ -18,14 +19,14 @@ function reset() {
 function getElAndScroll() {
   const element = document.getElementById(hashFragment);
   if (element !== null) {
-    element.scrollIntoView();
+    element.scrollIntoView(scrollOptions);
     reset();
     return true;
   }
   return false;
 }
 
-function hashLinkScroll() {
+function hashLinkScroll(behavior) {
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
     if (getElAndScroll() === false) {
@@ -52,6 +53,9 @@ export function HashLink(props) {
     }
     if (hashFragment !== '') hashLinkScroll();
   }
+  scrollOptions = {
+    behavior: props.behavior || 'auto'
+  };
   return <Link {...props} onClick={handleClick}>{props.children}</Link>;
 }
 
@@ -62,4 +66,5 @@ HashLink.propTypes = {
     PropTypes.string,
     PropTypes.object,
   ]),
+  behavior: PropTypes.string,
 };
