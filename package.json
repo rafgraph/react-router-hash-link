@@ -1,5 +1,6 @@
 {
-  "name": "react-github-pages",
+  "name": "react-router-hash-link-scroll-v2/3",
+  "private": true,
   "description": "Scoll to element on page with #hash link using React Router",
   "scripts": {
     "start": "webpack-dev-server -d --inline --host 0.0.0.0 --history-api-fallback --progress"
