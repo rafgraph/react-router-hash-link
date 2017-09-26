@@ -29,7 +29,7 @@
     "url": "https://github.com/rafrex/react-router-hash-link/issues"
   },
   "peerDependencies": {
-    "react": "^15.5.0",
+    "react": ">=15",
     "react-router-dom": "^4.1.1"
   },
   "devDependencies": {
