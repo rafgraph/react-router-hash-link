@@ -39,6 +39,6 @@
     "babel-preset-react": "^6.24.1"
   },
   "dependencies": {
-    "prop-types": "^15.5.8"
+    "prop-types": "^15.6.0"
   }
 }
