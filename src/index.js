@@ -1,65 +1,88 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 
-let hashFragment = '';
-let observer = null;
-let asyncTimerId = null;
+export default class HashLink extends Component {
+  static propTypes = {
+    onClick: PropTypes.func,
+    children: PropTypes.node,
+    to: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.shape({
+        hash: PropTypes.string
+      })
+    ]).isRequired,
+    scrollFn: PropTypes.func
+  };
 
-function reset() {
-  hashFragment = '';
-  if (observer !== null) observer.disconnect();
-  if (asyncTimerId !== null) {
-    window.clearTimeout(asyncTimerId);
-    asyncTimerId = null;
-  }
-}
+  static defaultProps = {
+    scrollFn: element => element.scrollIntoView()
+  };
 
-function getElAndScroll() {
-  const element = document.getElementById(hashFragment);
-  if (element !== null) {
-    element.scrollIntoView();
-    reset();
-    return true;
-  }
-  return false;
-}
+  static defaultState = {
+    observer: undefined,
+    asyncTimerId: undefined
+  };
 
-function hashLinkScroll() {
-  // Push onto callback queue so it runs after the DOM is updated
-  window.setTimeout(() => {
-    if (getElAndScroll() === false) {
-      if (observer === null) {
-        observer = new MutationObserver(getElAndScroll);
-      }
-      observer.observe(document, { attributes: true, childList: true, subtree: true });
-      // if the element doesn't show up in 10 seconds, stop checking
-      asyncTimerId = window.setTimeout(() => {
-        reset();
-      }, 10000);
+  state = { ...HashLink.defaultState };
+
+  reset = () => {
+    const { observer, asyncTimerId } = this.state;
+    if (asyncTimerId) {
+      window.clearTimeout(asyncTimerId);
     }
-  }, 0);
-}
-
-export function HashLink(props) {
-  function handleClick(e) {
-    reset();
-    if (props.onClick) props.onClick(e);
-    if (typeof props.to === 'string') {
-      hashFragment = props.to.split('#').slice(1).join('#');
-    } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
-      hashFragment = props.to.hash.replace('#', '');
+    if (observer) {
+      observer.disconnect();
     }
-    if (hashFragment !== '') hashLinkScroll();
+    this.setState({ ...HashLink.defaultState });
   }
-  return <Link {...props} onClick={handleClick}>{props.children}</Link>;
-}
 
-HashLink.propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-  to: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
-};
+  scrollToElementByHash = hash => {
+    const element = document.getElementById(hash);
+    if (element !== null) {
+      this.props.scrollFn(element);
+      this.reset();
+      return true;
+    }
+    return false;
+  }
+
+  scrollTo = hash => {
+    if (hash) {
+      // Push onto callback queue so it runs after the DOM is updated
+      window.setTimeout(() => {
+        const scrollFn = () => this.scrollToElementByHash(hash);
+        if (!scrollFn()) {
+          const observer = new MutationObserver(scrollFn);
+          observer.observe(document, { attributes: true, childList: true, subtree: true });
+          // if the element doesn't show up in 10 seconds, stop checking
+          const asyncTimerId = window.setTimeout(() => {
+            observer.disconnect();
+          }, 10000);
+          this.setState({ observer, asyncTimerId });
+        }
+      }, 0);
+    }
+  }
+
+  handleClick = e => {
+    this.reset();
+
+    const { onClick, to } = this.props;
+    if (onClick) {
+      onClick(e);
+    }
+    let hash = undefined;
+    if (typeof to === 'string') {
+      hash = to.split('#').slice(1).join('#');
+    } else if (typeof to === 'object' && typeof to.hash === 'string') {
+      hash = to.hash.replace('#', '');
+    }
+    this.scrollTo(hash);
+  }
+
+  render() {
+    const { scrollFn, children, onClick, ...childProps } = this.props;
+    return <Link {...childProps} onClick={this.handleClick}>{children}</Link>;
+  }
+}
