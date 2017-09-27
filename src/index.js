@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import jump from 'jump.js';
 
 export default class HashLink extends Component {
   static propTypes = {
@@ -13,13 +12,11 @@ export default class HashLink extends Component {
         hash: PropTypes.string
       })
     ]).isRequired,
-    offset: PropTypes.number,
-    duration: PropTypes.number
+    scrollFn: PropTypes.func
   };
 
   static defaultProps = {
-    offset: 0,
-    duration: 400
+    scrollFn: element => element.scrollIntoView()
   };
 
   static defaultState = {
@@ -40,10 +37,10 @@ export default class HashLink extends Component {
     this.setState({ ...HashLink.defaultState });
   }
 
-  scrollToElementByHash(hash, offset, duration) {
+  scrollToElementByHash = hash => {
     const element = document.getElementById(hash);
     if (element !== null) {
-      jump(element, { offset, duration });
+      this.props.scrollFn(element);
       this.reset();
       return true;
     }
@@ -52,10 +49,9 @@ export default class HashLink extends Component {
 
   scrollTo = hash => {
     if (hash) {
-      const { offset, duration } = this.props;
       // Push onto callback queue so it runs after the DOM is updated
       window.setTimeout(() => {
-        const scrollFn = () => this.scrollToElementByHash(hash, offset, duration);
+        const scrollFn = () => this.scrollToElementByHash(hash);
         if (!scrollFn()) {
           const observer = new MutationObserver(scrollFn);
           observer.observe(document, { attributes: true, childList: true, subtree: true });
@@ -86,7 +82,7 @@ export default class HashLink extends Component {
   }
 
   render() {
-    const { offset, duration, children, onClick, ...childProps } = this.props;
+    const { scrollFn, children, onClick, ...childProps } = this.props;
     return <Link {...childProps} onClick={this.handleClick}>{children}</Link>;
   }
 }
