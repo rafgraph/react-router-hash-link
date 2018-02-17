@@ -9,14 +9,31 @@ This is a solution to [React Router's issue of not scrolling to `#hash-fragments
 When you click on a link created with `react-router-hash-link` it will scroll to the element on the page with the `id` that matches the `#hash-fragment` in the link. This will also work for elements that are created after an asynchronous data load. Note that you must use React Router's `BrowserRouter` for this to work.
 
 ```shell
+$ yarn add react-router-hash-link
+# OR
 $ npm install --save react-router-hash-link
 ```
 
+## `<HashLink>`
 ```javascript
 // In YourComponent.js
 ...
 import { HashLink as Link } from 'react-router-hash-link';
 ...
-// Use it just like a RRv4 link (to can be a string or an object, see RRv4 api for details):
+// Use it just like a RRv4 <Link> (to can be a string or an object, see RRv4 api for details):
 <Link to="/some/path#with-hash-fragment">Link to Hash Fragment</Link>
+```
+
+
+## `<NavHashLink>`
+```javascript
+// In YourComponent.js
+...
+import { NavHashLink as NavLink } from 'react-router-hash-link';
+...
+// Use it just like a RRv4 <NavLink> (see RRv4 api for details):
+<NavLink
+  to="/some/path#with-hash-fragment"
+  activeClassName="selected"
+>Link to Hash Fragment</NavLink>
 ```
