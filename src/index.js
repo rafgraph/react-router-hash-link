@@ -5,6 +5,7 @@ import { Link, NavLink } from 'react-router-dom';
 let hashFragment = '';
 let observer = null;
 let asyncTimerId = null;
+let scrollFunction = null;
 
 function reset() {
   hashFragment = '';
@@ -18,7 +19,7 @@ function reset() {
 function getElAndScroll() {
   const element = document.getElementById(hashFragment);
   if (element !== null) {
-    element.scrollIntoView();
+    scrollFunction(element);
     reset();
     return true;
   }
@@ -60,10 +61,17 @@ export function genericHashLink(props, As) {
     ) {
       hashFragment = props.to.hash.replace('#', '');
     }
-    if (hashFragment !== '') hashLinkScroll();
+    if (hashFragment !== '') {
+      scrollFunction =
+        props.scroll ||
+        (el =>
+          el.scrollIntoView(props.smooth ? { behavior: 'smooth' } : undefined));
+      hashLinkScroll();
+    }
   }
+  const { scroll, smooth, ...filteredProps } = props;
   return (
-    <As {...props} onClick={handleClick}>
+    <As {...filteredProps} onClick={handleClick}>
       {props.children}
     </As>
   );
@@ -80,6 +88,7 @@ export function NavHashLink(props) {
 const propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
+  scroll: PropTypes.func,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
