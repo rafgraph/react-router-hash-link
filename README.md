@@ -40,7 +40,7 @@ import { NavHashLink as NavLink } from 'react-router-hash-link';
 ```
 
 ### Scrolling API
-`smooth: boolean`
+#### `smooth: boolean`
 - Smooth scroll to the element
 - React Router Hash Link uses the native Element method `element.scrollIntoView()` for scrolling, and when the `smooth` prop is present it will call it with the smooth option, `element.scrollIntoView({ behavior: 'smooth' })`
 - Note that not all browsers have implemented options for `scrollIntoView` - see [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) and [Can I Use](https://caniuse.com/#feat=scrollintoview) - there is also a browser [polyfill for smooth scrolling](https://github.com/iamdustan/smoothscroll) which you can install separately so `smooth` will work in all browsers
@@ -49,7 +49,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 <Link smooth to="/path#hash">Link to Hash Fragment</Link>
 ```
 
-`scroll: function`
+#### `scroll: function`
 - Custom scroll function called with the element to scroll to, e.g. `const myScrollFn = element => {...}`
 - This allows you to do things like scroll with offset, use a specific smooth scrolling library, or pass in your own options to `scrollIntoView`
 ```js
