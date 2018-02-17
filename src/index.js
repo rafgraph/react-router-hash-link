@@ -69,8 +69,9 @@ export function genericHashLink(props, As) {
       hashLinkScroll();
     }
   }
+  const { scroll, smooth, ...filteredProps } = props;
   return (
-    <As {...props} onClick={handleClick}>
+    <As {...filteredProps} onClick={handleClick}>
       {props.children}
     </As>
   );
