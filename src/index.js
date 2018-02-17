@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 let hashFragment = '';
 let observer = null;
@@ -41,7 +41,7 @@ function hashLinkScroll() {
   }, 0);
 }
 
-export function HashLink(props) {
+export function genericHashLink(props, As) {
   function handleClick(e) {
     reset();
     if (props.onClick) props.onClick(e);
@@ -52,10 +52,18 @@ export function HashLink(props) {
     }
     if (hashFragment !== '') hashLinkScroll();
   }
-  return <Link {...props} onClick={handleClick}>{props.children}</Link>;
+  return <As {...props} onClick={handleClick}>{props.children}</As>;
 }
 
-HashLink.propTypes = {
+export function HashLink(props) {
+  return genericHashLink(props, Link);
+}
+
+export function NavHashLink(props) {
+  return genericHashLink(props, NavLink);
+}
+
+const propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   to: PropTypes.oneOfType([
@@ -63,3 +71,6 @@ HashLink.propTypes = {
     PropTypes.object,
   ]),
 };
+
+HashLink.propTypes = propTypes;
+NavHashLink.propTypes = propTypes;
