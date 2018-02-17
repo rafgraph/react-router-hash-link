@@ -32,7 +32,11 @@ function hashLinkScroll() {
       if (observer === null) {
         observer = new MutationObserver(getElAndScroll);
       }
-      observer.observe(document, { attributes: true, childList: true, subtree: true });
+      observer.observe(document, {
+        attributes: true,
+        childList: true,
+        subtree: true,
+      });
       // if the element doesn't show up in 10 seconds, stop checking
       asyncTimerId = window.setTimeout(() => {
         reset();
@@ -46,13 +50,23 @@ export function genericHashLink(props, As) {
     reset();
     if (props.onClick) props.onClick(e);
     if (typeof props.to === 'string') {
-      hashFragment = props.to.split('#').slice(1).join('#');
-    } else if (typeof props.to === 'object' && typeof props.to.hash === 'string') {
+      hashFragment = props.to
+        .split('#')
+        .slice(1)
+        .join('#');
+    } else if (
+      typeof props.to === 'object' &&
+      typeof props.to.hash === 'string'
+    ) {
       hashFragment = props.to.hash.replace('#', '');
     }
     if (hashFragment !== '') hashLinkScroll();
   }
-  return <As {...props} onClick={handleClick}>{props.children}</As>;
+  return (
+    <As {...props} onClick={handleClick}>
+      {props.children}
+    </As>
+  );
 }
 
 export function HashLink(props) {
@@ -66,10 +80,7 @@ export function NavHashLink(props) {
 const propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
-  to: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.object,
-  ]),
+  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
 HashLink.propTypes = propTypes;
