@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 export const linkStyle = {
   normal: {
@@ -45,5 +46,5 @@ export const Li = props => (
 );
 
 Li.propTypes = {
-  children: React.PropTypes.node,
+  children: PropTypes.node,
 };

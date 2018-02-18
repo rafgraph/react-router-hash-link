@@ -16,8 +16,8 @@
   "dependencies": {
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
     "react-interactive": "^0.8.1",
     "react-router-dom": "^4.2.2",
     "react-router-hash-link": "^1.2.0",
