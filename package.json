@@ -19,7 +19,7 @@
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-interactive": "^0.8.1",
-    "react-router-dom": "^4.1.1",
+    "react-router-dom": "^4.2.2",
     "react-router-hash-link": "^1.2.0",
     "smoothscroll-polyfill": "^0.4.0"
   },
