@@ -25,8 +25,8 @@ function HashLinkPage({ location }) {
         <h3 style={h3Style}>Go to:</h3>
         <ul>
           <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
+          <Li><Interactive as={Link} scroll={el => el.scrollIntoView({ behavior: 'smooth' })} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
+          <Li><Interactive as={Link} scroll={el => el.scrollIntoView({ behavior: 'smooth' })} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
         </ul>
       </section>
       <section style={objectAssign({ backgroundColor: '#D0D0D0' }, sectionStyle)} id="section-two">
@@ -34,8 +34,8 @@ function HashLinkPage({ location }) {
         <h3 style={h3Style}>Go to:</h3>
         <ul>
           <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
+          <Li><Interactive as={Link} smooth {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
+          <Li><Interactive as={Link} smooth {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
         </ul>
       </section>
       <section style={objectAssign({ backgroundColor: '#C0C0C0' }, sectionStyle)} id="section-three">
@@ -43,8 +43,8 @@ function HashLinkPage({ location }) {
         <h3 style={h3Style}>Go to:</h3>
         <ul>
           <Li><Interactive as={Link} {...linkStyle} to="/">Home</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
-          <Li><Interactive as={Link} {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
+          <Li><Interactive as={Link} smooth {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
+          <Li><Interactive as={Link} smooth {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
         </ul>
       </section>
     </div>
