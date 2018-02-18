@@ -1676,7 +1676,7 @@ detect-indent@^4.0.0:
   dependencies:
     repeating "^2.0.0"
 
-detect-it@^3.0.0:
+detect-it@^3.0.3:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/detect-it/-/detect-it-3.0.4.tgz#79df04f25cc5b2529ebfa37c0fa1baa0e1d41862"
   dependencies:
@@ -3894,13 +3894,13 @@ react-dom@^15.5.4:
     object-assign "^4.1.0"
     prop-types "^15.5.10"
 
-react-interactive@^0.6.5:
-  version "0.6.6"
-  resolved "https://registry.yarnpkg.com/react-interactive/-/react-interactive-0.6.6.tgz#20f8b656b0a0ea6db4648f9903c876940b717b34"
+react-interactive@^0.8.1:
+  version "0.8.1"
+  resolved "https://registry.yarnpkg.com/react-interactive/-/react-interactive-0.8.1.tgz#6e3ba6f3e59378d4381e9104acdce82040241af4"
   dependencies:
-    detect-it "^3.0.0"
+    detect-it "^3.0.3"
     object-assign "^4.1.1"
-    prop-types "^15.5.8"
+    prop-types "^15.6.0"
 
 react-router-dom@^4.1.1:
   version "4.2.2"
