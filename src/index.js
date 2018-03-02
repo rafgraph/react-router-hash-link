@@ -82,6 +82,13 @@ export function HashLink(props) {
 }
 
 export function NavHashLink(props) {
+  if (!props.isActive) {
+    props = Object.assign({
+      isActive: () => {
+        return window.location.pathname + window.location.hash === props.to;
+      }
+    }, props)
+  }
   return genericHashLink(props, NavLink);
 }
 
