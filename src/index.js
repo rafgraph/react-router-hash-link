@@ -64,17 +64,67 @@ export function genericHashLink(props, As) {
     if (hashFragment !== '') {
       scrollFunction =
         props.scroll ||
-        (el =>
-          el.scrollIntoView(props.smooth ? { behavior: 'smooth' } : undefined));
+        (el => {
+          if (!smooth) {
+            el.scrollIntoView();
+          } else {
+            if(props.onStartSmooth){
+              props.onStartSmooth();
+            }
+            jump(el.getBoundingClientRect().top - (props.offset || 0), {
+              callback: props.onEndSmooth,
+              easing: props.easing,
+              duration: props.duration
+            });
+          }
+        });
       hashLinkScroll();
     }
   }
-  const { scroll, smooth, ...filteredProps } = props;
+  const { scroll, smooth, onStartSmooth, onEndSmooth, ...filteredProps } = props;
   return (
     <As {...filteredProps} onClick={handleClick}>
       {props.children}
     </As>
   );
+}
+
+function jump(distance, options) {
+  var start = window.pageYOffset,
+    opt = {
+      duration: options.duration || 400,
+      callback: options.callback,
+      easing: options.easing || easeInOutQuad
+    },
+    duration = typeof opt.duration === 'function' ? opt.duration(distance) : opt.duration,
+    timeStart,
+    timeElapsed;
+
+  window.requestAnimationFrame(function (time) {
+    timeStart = time; loop(time);
+  });
+
+  function loop(time) {
+    timeElapsed = time - timeStart;
+
+    window.scrollTo(0, opt.easing(timeElapsed, start, distance, duration));
+
+    if (timeElapsed < duration) window.requestAnimationFrame(loop); else end();
+  }
+
+  function end() {
+    window.scrollTo(0, start + distance);
+
+    if (typeof opt.callback === 'function') opt.callback();
+  }
+
+  // Robert Penner's easeInOutQuad - http://robertpenner.com/easing/
+  function easeInOutQuad(t, b, c, d) {
+    t /= d / 2;
+    if (t < 1) return c / 2 * t * t + b;
+    t--;
+    return -c / 2 * (t * (t - 2) - 1) + b;
+  }
 }
 
 export function HashLink(props) {
