@@ -88,7 +88,7 @@ export function NavHashLink(props) {
         if (typeof props.to === 'string') {
           return window.location.pathname + window.location.hash === props.to;
         } else if (typeof props.to === 'object' && typeof props.to.hash === 'string'){
-          return window.location.pathname === props.to.pathname && window.location.hash === props.to.hash;
+          return window.location.pathname === props.to.pathname && window.location.hash.replace('#', '') === props.to.hash;
         }
         
       }
