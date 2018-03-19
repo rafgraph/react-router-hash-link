@@ -85,7 +85,12 @@ export function NavHashLink(props) {
   if (!props.isActive) {
     props = Object.assign({
       isActive: () => {
-        return window.location.pathname + window.location.hash === props.to;
+        if (typeof props.to === 'string') {
+          return window.location.pathname + window.location.hash === props.to;
+        } else if (typeof props.to === 'object' && typeof props.to.hash === 'string'){
+          return window.location.pathname === props.to.pathname && window.location.hash === props.to.hash;
+        }
+        
       }
     }, props)
   }
