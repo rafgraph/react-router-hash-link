@@ -65,23 +65,19 @@ export function genericHashLink(props, As) {
       scrollFunction =
         props.scroll ||
         (el => {
-          if (!smooth) {
-            el.scrollIntoView();
-          } else {
-            if(props.onStartSmooth){
-              props.onStartSmooth();
-            }
-            jump(el.getBoundingClientRect().top - (props.offset || 0), {
-              callback: props.onEndSmooth,
-              easing: props.easing,
-              duration: props.duration
-            });
+          if (props.onStartScroll) {
+            props.onStartScroll();
           }
+          jump(el.getBoundingClientRect().top - (props.offset || 0), {
+            callback: props.onEndScroll,
+            easing: props.easing,
+            duration: smooth ? props.duration : 1
+          });
         });
       hashLinkScroll();
     }
   }
-  const { scroll, smooth, onStartSmooth, onEndSmooth, ...filteredProps } = props;
+  const { scroll, smooth, onStartScroll, onEndScroll, ...filteredProps } = props;
   return (
     <As {...filteredProps} onClick={handleClick}>
       {props.children}
