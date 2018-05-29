@@ -59,3 +59,24 @@ import { HashLink as Link } from 'react-router-hash-link';
     scroll={el => el.scrollIntoView({ behavior: 'instant', block: 'end' })}
 >Link to Hash Fragment</Link>
 ```
+
+### Custom `Link`
+
+The exported components are wrapped versions of the `Link` and `NavLink` exports of react-router-dom. In some cases you may need to provide a custom `Link` implementation.
+
+For example, the gatsby static site generator requires you to use its implementation of `Link`. You can wrap it with the `genericHashLink` function of this package.
+
+```jsx
+import { genericHashLink } from 'react-router-hash-link';
+import GatsbyLink from 'gatsby-link';
+
+const MyHashLink = (props) => genericHashLink(props, GatsbyLink);
+
+const MyComponent = () => (
+  <div>
+    The default wont work for you?
+    <MyHashLink to="/faq#how-to-use-custom-link">No problem!</MyHashLink>
+  </div>
+);
+```
+
