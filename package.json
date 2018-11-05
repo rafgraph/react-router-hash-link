@@ -4,7 +4,7 @@
   "description": "Scoll to element on page with #hash link using React Router",
   "scripts": {
     "start-local": "yarn link react-router-hash-link && yarn start",
-    "start": "webpack-dev-server --devtool eval-source-map --host 0.0.0.0 --public 10.0.1.11:8080 --history-api-fallback --open",
+    "start": "webpack-dev-server --devtool eval-source-map --host 0.0.0.0 --public 10.0.1.6:8080 --history-api-fallback --open",
     "build": "yarn unlink react-router-hash-link && yarn add react-router-hash-link && webpack -p"
   },
   "repository": {
@@ -20,7 +20,7 @@
     "react-dom": "^16.2.0",
     "react-interactive": "^0.8.1",
     "react-router-dom": "^4.2.2",
-    "react-router-hash-link": "^1.2.0",
+    "react-router-hash-link": "^1.2.1",
     "smoothscroll-polyfill": "^0.4.0"
   },
   "devDependencies": {
