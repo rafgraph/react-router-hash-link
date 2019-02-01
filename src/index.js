@@ -66,8 +66,8 @@ export function genericHashLink(props, As) {
         props.scroll ||
         (el =>
           props.smooth
-            ? el.scrollIntoView({ behavior: "smooth" })
-            : el.scrollIntoView());
+            ? el.scrollIntoView({ behavior: "smooth", block: "start" })
+            : el.scrollIntoView({ block: "start" }));
       hashLinkScroll();
     }
   }
