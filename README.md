@@ -80,3 +80,13 @@ const MyComponent = () => (
 );
 ```
 
+### Scroll to the top of the page
+
+Set `to` parameter to `#` or `#top` in order to scroll to the top of the page. You may also prevent URL update by preventing link default behaviour in `onClick` handler:
+
+```js
+import { HashLink as Link } from 'react-router-hash-link';
+<Link to="#top" onClick={e => e.preventDefault()}>
+  Link to Hash Fragment
+</Link>;
+```

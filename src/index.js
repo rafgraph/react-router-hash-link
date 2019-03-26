@@ -17,7 +17,13 @@ function reset() {
 }
 
 function getElAndScroll() {
-  const element = document.getElementById(hashFragment);
+  let element = null;
+  if (hashFragment === '#' || hashFragment === '#top') {
+    element = document.body;
+  } else {
+    const id = hashFragment.replace(/^#/, '');
+    element = document.getElementById(id);
+  }
   if (element !== null) {
     scrollFunction(element);
     reset();
@@ -50,18 +56,8 @@ export function genericHashLink(props, As) {
   function handleClick(e) {
     reset();
     if (props.onClick) props.onClick(e);
-    if (typeof props.to === 'string') {
-      hashFragment = props.to
-        .split('#')
-        .slice(1)
-        .join('#');
-    } else if (
-      typeof props.to === 'object' &&
-      typeof props.to.hash === 'string'
-    ) {
-      hashFragment = props.to.hash.replace('#', '');
-    }
-    if (hashFragment !== '') {
+    hashFragment = props.to.hash || props.to;
+    if (hashFragment !== "") {
       scrollFunction =
         props.scroll ||
         (el =>
