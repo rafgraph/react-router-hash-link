@@ -60,7 +60,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 >Link to Hash Fragment</Link>
 ```
 
-### Custom `Link`
+## Custom `Link`
 
 The exported components are wrapped versions of the `Link` and `NavLink` exports of react-router-dom. In some cases you may need to provide a custom `Link` implementation.
 
@@ -80,3 +80,20 @@ const MyComponent = () => (
 );
 ```
 
+## `id` prefix
+
+It can be necessary to use an `id` different from the the hash for the element to scroll to (example when using [fullPage](https://github.com/alvarotrigo/fullPage.js/) as there is a [bug](https://github.com/alvarotrigo/fullPage.js/issues/72) when `id`s have the same values than anchors). To do so you can use the `prefix` prop a such :
+
+```jsx
+<Link
+    to="/path#hash"
+    prefix="prefix"
+>Link to Hash Fragment</Link>
+```
+The element linked will then need to have `prefix-hash` as its id :
+
+```jsx
+<div id="prefix-hash">
+    element to scroll to
+</div>
+```

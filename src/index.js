@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 
 let hashFragment = '';
+let prefix = '';
 let observer = null;
 let asyncTimerId = null;
 let scrollFunction = null;
@@ -17,7 +18,15 @@ function reset() {
 }
 
 function getElAndScroll() {
-  const element = document.getElementById(hashFragment);
+  let element;
+  if (prefix)
+  {
+    element = document.getElementById(`${prefix}-${hashFragment}`);
+  }
+  else
+  {
+    element = document.getElementById(hashFragment);
+  }
   if (element !== null) {
     scrollFunction(element);
     reset();
@@ -60,6 +69,9 @@ export function genericHashLink(props, As) {
       typeof props.to.hash === 'string'
     ) {
       hashFragment = props.to.hash.replace('#', '');
+    }
+    if (typeof props.prefix === 'string' && props.prefix !== '') {
+      prefix = props.prefix;
     }
     if (hashFragment !== '') {
       scrollFunction =
