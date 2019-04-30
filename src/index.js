@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link, NavLink } from 'react-router-dom';
 
+const isSSR = typeof window === 'undefined';
+
 let hashFragment = '';
 let observer = null;
 let asyncTimerId = null;
@@ -10,7 +12,7 @@ let scrollFunction = null;
 function reset() {
   hashFragment = '';
   if (observer !== null) observer.disconnect();
-  if (asyncTimerId !== null) {
+  if (asyncTimerId !== null && !isSSR) {
     window.clearTimeout(asyncTimerId);
     asyncTimerId = null;
   }
@@ -27,6 +29,10 @@ function getElAndScroll() {
 }
 
 function hashLinkScroll() {
+  if (isSSR) {
+    return;
+  }
+
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
     if (getElAndScroll() === false) {
