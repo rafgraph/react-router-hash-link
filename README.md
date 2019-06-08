@@ -1,6 +1,6 @@
 # React Router Hash Link
 
-***Note that this is for React Router v4, for v2/3 see [this solution](https://github.com/rafrex/react-router-hash-link/tree/react-router-v2/3).***
+***Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafrex/react-router-hash-link/tree/react-router-v2/3).***
 
 [Live Example](http://react-router-hash-link.rafrex.com/)
 
@@ -20,7 +20,7 @@ $ npm install --save react-router-hash-link
 ...
 import { HashLink as Link } from 'react-router-hash-link';
 ...
-// Use it just like a RRv4 <Link> (to can be a string or an object, see RRv4 api for details):
+// Use it just like a RRv4/5 <Link> (to can be a string or an object, see RRv4/5 api for details):
 <Link to="/some/path#with-hash-fragment">Link to Hash Fragment</Link>
 ```
 
@@ -31,7 +31,7 @@ import { HashLink as Link } from 'react-router-hash-link';
 ...
 import { NavHashLink as NavLink } from 'react-router-hash-link';
 ...
-// Use it just like a RRv4 <NavLink> (see RRv4 api for details):
+// Use it just like a RRv4/5 <NavLink> (see RRv4/5 api for details):
 <NavLink
   to="/some/path#with-hash-fragment"
   activeClassName="selected"
