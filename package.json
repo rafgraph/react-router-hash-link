@@ -1,7 +1,7 @@
 {
   "name": "react-router-hash-link",
   "version": "1.2.1",
-  "description": "Hash link scroll functionality for React Router v4",
+  "description": "Hash link scroll functionality for React Router v4/5",
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --presets=env,react --plugins=transform-object-rest-spread",
@@ -30,7 +30,7 @@
   },
   "peerDependencies": {
     "react": ">=15",
-    "react-router-dom": "^4.1.1"
+    "react-router-dom": "^4.1.1 || ^5.0.0"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
