@@ -46,46 +46,44 @@ function hashLinkScroll() {
   }, 0);
 }
 
-export function genericHashLink(props, As) {
-  function handleClick(e) {
-    reset();
-    if (props.onClick) props.onClick(e);
-    if (typeof props.to === 'string') {
-      hashFragment = props.to
-        .split('#')
-        .slice(1)
-        .join('#');
-    } else if (
-      typeof props.to === 'object' &&
-      typeof props.to.hash === 'string'
-    ) {
-      hashFragment = props.to.hash.replace('#', '');
+export function genericHashLink(As) {
+  return React.forwardRef((props, ref) => {
+    function handleClick(e) {
+      reset();
+      if (props.onClick) props.onClick(e);
+      if (typeof props.to === 'string') {
+        hashFragment = props.to
+          .split('#')
+          .slice(1)
+          .join('#');
+      } else if (
+        typeof props.to === 'object' &&
+        typeof props.to.hash === 'string'
+      ) {
+        hashFragment = props.to.hash.replace('#', '');
+      }
+      if (hashFragment !== '') {
+        scrollFunction =
+          props.scroll ||
+          (el =>
+            props.smooth
+              ? el.scrollIntoView({ behavior: "smooth" })
+              : el.scrollIntoView());
+        hashLinkScroll();
+      }
     }
-    if (hashFragment !== '') {
-      scrollFunction =
-        props.scroll ||
-        (el =>
-          props.smooth
-            ? el.scrollIntoView({ behavior: "smooth" })
-            : el.scrollIntoView());
-      hashLinkScroll();
-    }
-  }
-  const { scroll, smooth, ...filteredProps } = props;
-  return (
-    <As {...filteredProps} onClick={handleClick}>
-      {props.children}
-    </As>
-  );
+    const { scroll, smooth, ...filteredProps } = props;
+    return (
+      <As {...filteredProps} onClick={handleClick} ref={ref}>
+        {props.children}
+      </As>
+    );
+  });
 }
 
-export function HashLink(props) {
-  return genericHashLink(props, Link);
-}
+export const HashLink = genericHashLink(Link);
 
-export function NavHashLink(props) {
-  return genericHashLink(props, NavLink);
-}
+export const NavHashLink = genericHashLink(NavLink);
 
 const propTypes = {
   onClick: PropTypes.func,
