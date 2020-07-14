@@ -14,7 +14,7 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafrex/react-router-hash-link.git"
+    "url": "git+https://github.com/rafgraph/react-router-hash-link.git"
   },
   "keywords": [
     "react",
@@ -23,10 +23,10 @@
     "hash-link",
     "scroll"
   ],
-  "author": "Rafael Pedicini <code@rafrex.com>",
+  "author": "Rafael Pedicini <rafael@rafgraph.dev>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/rafrex/react-router-hash-link/issues"
+    "url": "https://github.com/rafgraph/react-router-hash-link/issues"
   },
   "peerDependencies": {
     "react": ">=15",

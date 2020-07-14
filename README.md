@@ -1,6 +1,6 @@
 # React Router Hash Link
 
-***Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafrex/react-router-hash-link/tree/react-router-v2/3).***
+***Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafgraph/react-router-hash-link/tree/react-router-v2/3).***
 
 [Live Example](http://react-router-hash-link.rafrex.com/)
 
@@ -70,7 +70,7 @@ For example, the gatsby static site generator requires you to use its implementa
 import { genericHashLink } from 'react-router-hash-link';
 import GatsbyLink from 'gatsby-link';
 
-const MyHashLink = (props) => genericHashLink(props, GatsbyLink);
+const MyHashLink = genericHashLink(GatsbyLink);
 
 const MyComponent = () => (
   <div>
@@ -79,4 +79,3 @@ const MyComponent = () => (
   </div>
 );
 ```
-
