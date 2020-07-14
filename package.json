@@ -16,11 +16,11 @@
   "dependencies": {
     "object-assign": "^4.1.1",
     "prop-types": "^15.5.8",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
-    "react-interactive": "^0.8.1",
-    "react-router-dom": "^4.2.2",
-    "react-router-hash-link": "^1.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
+    "react-interactive": "^0.9.1",
+    "react-router-dom": "^5.2.0",
+    "react-router-hash-link": "^2.0.0",
     "smoothscroll-polyfill": "^0.4.0"
   },
   "devDependencies": {
