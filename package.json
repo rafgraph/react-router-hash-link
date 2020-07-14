@@ -9,9 +9,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafrex/react-router-hash-link.git"
+    "url": "git+https://github.com/rafgraph/react-router-hash-link.git"
   },
-  "author": "Rafael Pedicini <code@rafrex.com>",
+  "author": "Rafael Pedicini <rafael@rafgraph.dev>",
   "license": "MIT",
   "dependencies": {
     "object-assign": "^4.1.1",
