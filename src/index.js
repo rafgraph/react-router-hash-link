@@ -26,7 +26,7 @@ function getElAndScroll() {
   return false;
 }
 
-function hashLinkScroll() {
+function hashLinkScroll(timeout) {
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
     if (getElAndScroll() === false) {
@@ -38,10 +38,10 @@ function hashLinkScroll() {
         childList: true,
         subtree: true,
       });
-      // if the element doesn't show up in 10 seconds, stop checking
+      // if the element doesn't show up in specified timeout or 10 seconds, stop checking
       asyncTimerId = window.setTimeout(() => {
         reset();
-      }, 10000);
+      }, timeout || 10000);
     }
   }, 0);
 }
@@ -69,10 +69,10 @@ export function genericHashLink(As) {
             props.smooth
               ? el.scrollIntoView({ behavior: "smooth" })
               : el.scrollIntoView());
-        hashLinkScroll();
+        hashLinkScroll(props.timeout);
       }
     }
-    const { scroll, smooth, ...filteredProps } = props;
+    const { scroll, smooth, timeout, ...filteredProps } = props;
     return (
       <As {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
@@ -89,6 +89,7 @@ const propTypes = {
   onClick: PropTypes.func,
   children: PropTypes.node,
   scroll: PropTypes.func,
+  timeout: PropTypes.number,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
