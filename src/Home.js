@@ -40,21 +40,6 @@ function Home() {
             </span>
           </Interactive>
         </div>
-        <div style={{ margin: '5px 0' }}>
-          <Interactive
-            as="a"
-            interactiveChild
-            focus={{}}
-            touchActive={{}}
-            touchActiveTapOnly
-            href="http://www.rafaelpedicini.com"
-          >
-            Code and concept by {' '}
-            <span {...childLinkStyle}>
-              Rafael Pedicini
-            </span>
-          </Interactive>
-        </div>
       </div>
     </div>
   );
