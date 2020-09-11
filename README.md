@@ -2,7 +2,11 @@
 
 ***Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafgraph/react-router-hash-link/tree/react-router-v2/3).***
 
-[Live Example](http://react-router-hash-link.rafrex.com/)
+![npm](https://img.shields.io/npm/dm/react-router-hash-link?label=npm)
+
+[Demo website](https://react-router-hash-link.rafgraph.dev/) (code on the [`gh-pages` branch](https://github.com/rafgraph/react-router-hash-link/tree/gh-pages))
+
+---
 
 This is a solution to [React Router's issue of not scrolling to `#hash-fragments`](https://github.com/reactjs/react-router/issues/394#issuecomment-220221604) when using the `<Link>` component to navigate.
 
