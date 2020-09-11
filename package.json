@@ -1,5 +1,5 @@
 {
-  "name": "react-router-hash-link-scroll-v2/3",
+  "name": "react-router-hash-link-v2/3",
   "private": true,
   "description": "Scoll to element on page with #hash link using React Router",
   "scripts": {
@@ -7,9 +7,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rafrex/react-router-hash-link-scroll.git"
+    "url": "git+https://github.com/rafgraph/react-router-hash-link.git"
   },
-  "author": "Rafael Pedicini <code@rafrex.com>",
+  "author": "Rafael Pedicini <rafael@rafgraph.dev>",
   "license": "MIT",
   "dependencies": {
     "object-assign": "^4.1.0",

@@ -11,8 +11,8 @@ function Home() {
         <Interactive
           as="a"
           {...linkStyle}
-          href="https://github.com/rafrex/react-router-hash-link"
-        >https://github.com/rafrex/react-router-hash-link</Interactive>
+          href="https://github.com/rafgraph/react-router-hash-link"
+        >https://github.com/rafgraph/react-router-hash-link</Interactive>
       </div>
 
       <nav>
@@ -32,7 +32,7 @@ function Home() {
             focus={{}}
             touchActive={{}}
             touchActiveTapOnly
-            href="https://github.com/rafrex/spa-github-pages"
+            href="https://github.com/rafgraph/spa-github-pages"
           >
             Site built with {' '}
             <span {...childLinkStyle}>
@@ -47,7 +47,7 @@ function Home() {
             focus={{}}
             touchActive={{}}
             touchActiveTapOnly
-            href="http://www.rafaelpedicini.com"
+            href="https://www.rafaelpedicini.com"
           >
             Code and concept by {' '}
             <span {...childLinkStyle}>
