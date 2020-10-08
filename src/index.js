@@ -20,6 +20,18 @@ function getElAndScroll() {
   const element = document.getElementById(hashFragment);
   if (element !== null) {
     scrollFunction(element);
+
+    // update focus to where the page is scrolled to
+    // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
+    let originalTabIndex = element.getAttribute('tabindex');
+    if (originalTabIndex === null) element.setAttribute('tabindex', -1);
+    element.focus({ preventScroll: true });
+    // for some reason calling blur() in safari resets the focus region to where it was previously,
+    // if blur() is not called it works in safari, but then are stuck with default focus styles
+    // on an element that otherwise might never had focus styles applied, so not an option
+    element.blur();
+    if (originalTabIndex === null) element.removeAttribute('tabindex');
+
     reset();
     return true;
   }
