@@ -52,10 +52,7 @@ export function genericHashLink(As) {
       reset();
       if (props.onClick) props.onClick(e);
       if (typeof props.to === 'string') {
-        hashFragment = props.to
-          .split('#')
-          .slice(1)
-          .join('#');
+        hashFragment = props.to.split('#').slice(1).join('#');
       } else if (
         typeof props.to === 'object' &&
         typeof props.to.hash === 'string'
@@ -65,9 +62,9 @@ export function genericHashLink(As) {
       if (hashFragment !== '') {
         scrollFunction =
           props.scroll ||
-          (el =>
+          ((el) =>
             props.smooth
-              ? el.scrollIntoView({ behavior: "smooth" })
+              ? el.scrollIntoView({ behavior: 'smooth' })
               : el.scrollIntoView());
         hashLinkScroll(props.timeout);
       }
