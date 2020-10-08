@@ -17,7 +17,19 @@ function reset() {
 }
 
 function getElAndScroll() {
-  const element = document.getElementById(hashFragment);
+  let element = null;
+  if (hashFragment === '#') {
+    element = document.body;
+  } else {
+    // check for element with matching id before assume '#top' is the top of the document
+    // see https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
+    const id = hashFragment.replace('#', '');
+    element = document.getElementById(id);
+    if (element === null && hashFragment === '#top') {
+      element = document.body;
+    }
+  }
+
   if (element !== null) {
     scrollFunction(element);
 
@@ -63,13 +75,13 @@ export function genericHashLink(As) {
     function handleClick(e) {
       reset();
       if (props.onClick) props.onClick(e);
-      if (typeof props.to === 'string') {
-        hashFragment = props.to.split('#').slice(1).join('#');
+      if (typeof props.to === 'string' && props.to.includes('#')) {
+        hashFragment = `#${props.to.split('#').slice(1).join('#')}`;
       } else if (
         typeof props.to === 'object' &&
         typeof props.to.hash === 'string'
       ) {
-        hashFragment = props.to.hash.replace('#', '');
+        hashFragment = props.to.hash;
       }
       if (hashFragment !== '') {
         scrollFunction =
