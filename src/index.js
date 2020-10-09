@@ -72,17 +72,26 @@ function hashLinkScroll(timeout) {
 
 export function genericHashLink(As) {
   return React.forwardRef((props, ref) => {
+    let linkHash = '';
+    if (typeof props.to === 'string' && props.to.includes('#')) {
+      linkHash = `#${props.to.split('#').slice(1).join('#')}`;
+    } else if (
+      typeof props.to === 'object' &&
+      typeof props.to.hash === 'string'
+    ) {
+      linkHash = props.to.hash;
+    }
+
+    const passDownProps = {};
+    if (As === NavLink) {
+      passDownProps.isActive = (match, location) =>
+        match && match.isExact && location.hash === linkHash;
+    }
+
     function handleClick(e) {
       reset();
+      hashFragment = linkHash;
       if (props.onClick) props.onClick(e);
-      if (typeof props.to === 'string' && props.to.includes('#')) {
-        hashFragment = `#${props.to.split('#').slice(1).join('#')}`;
-      } else if (
-        typeof props.to === 'object' &&
-        typeof props.to.hash === 'string'
-      ) {
-        hashFragment = props.to.hash;
-      }
       if (hashFragment !== '') {
         scrollFunction =
           props.scroll ||
@@ -95,7 +104,7 @@ export function genericHashLink(As) {
     }
     const { scroll, smooth, timeout, ...filteredProps } = props;
     return (
-      <As {...filteredProps} onClick={handleClick} ref={ref}>
+      <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
       </As>
     );
