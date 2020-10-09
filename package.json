@@ -5,7 +5,7 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "rm -rf lib && babel src -d lib --presets=@babel/preset-env,@babel/preset-react",
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "dev": "yarn link && babel src -d lib --watch --presets=@babel/preset-env,@babel/preset-react"
   },
   "files": [
