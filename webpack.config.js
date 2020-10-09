@@ -14,6 +14,10 @@ module.exports = {
     ],
   },
 
+  resolve: {
+    symlinks: false,
+  },
+
   plugins: process.argv.indexOf('-p') === -1 ? [] : [
     new webpack.optimize.UglifyJsPlugin({
       output: {

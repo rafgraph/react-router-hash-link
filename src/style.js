@@ -46,5 +46,5 @@ export const Li = props => (
 );
 
 Li.propTypes = {
-  children: PropTypes.node,
+  children: PropTypes.node.isRequired,
 };
