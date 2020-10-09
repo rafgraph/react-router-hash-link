@@ -17,9 +17,33 @@ function reset() {
 }
 
 function getElAndScroll() {
-  const element = document.getElementById(hashFragment);
+  let element = null;
+  if (hashFragment === '#') {
+    element = document.body;
+  } else {
+    // check for element with matching id before assume '#top' is the top of the document
+    // see https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
+    const id = hashFragment.replace('#', '');
+    element = document.getElementById(id);
+    if (element === null && hashFragment === '#top') {
+      element = document.body;
+    }
+  }
+
   if (element !== null) {
     scrollFunction(element);
+
+    // update focus to where the page is scrolled to
+    // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
+    let originalTabIndex = element.getAttribute('tabindex');
+    if (originalTabIndex === null) element.setAttribute('tabindex', -1);
+    element.focus({ preventScroll: true });
+    // for some reason calling blur() in safari resets the focus region to where it was previously,
+    // if blur() is not called it works in safari, but then are stuck with default focus styles
+    // on an element that otherwise might never had focus styles applied, so not an option
+    element.blur();
+    if (originalTabIndex === null) element.removeAttribute('tabindex');
+
     reset();
     return true;
   }
@@ -48,33 +72,39 @@ function hashLinkScroll(timeout) {
 
 export function genericHashLink(As) {
   return React.forwardRef((props, ref) => {
+    let linkHash = '';
+    if (typeof props.to === 'string' && props.to.includes('#')) {
+      linkHash = `#${props.to.split('#').slice(1).join('#')}`;
+    } else if (
+      typeof props.to === 'object' &&
+      typeof props.to.hash === 'string'
+    ) {
+      linkHash = props.to.hash;
+    }
+
+    const passDownProps = {};
+    if (As === NavLink) {
+      passDownProps.isActive = (match, location) =>
+        match && match.isExact && location.hash === linkHash;
+    }
+
     function handleClick(e) {
       reset();
+      hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
       if (props.onClick) props.onClick(e);
-      if (typeof props.to === 'string') {
-        hashFragment = props.to
-          .split('#')
-          .slice(1)
-          .join('#');
-      } else if (
-        typeof props.to === 'object' &&
-        typeof props.to.hash === 'string'
-      ) {
-        hashFragment = props.to.hash.replace('#', '');
-      }
       if (hashFragment !== '') {
         scrollFunction =
           props.scroll ||
-          (el =>
+          ((el) =>
             props.smooth
-              ? el.scrollIntoView({ behavior: "smooth" })
+              ? el.scrollIntoView({ behavior: 'smooth' })
               : el.scrollIntoView());
         hashLinkScroll(props.timeout);
       }
     }
-    const { scroll, smooth, timeout, ...filteredProps } = props;
+    const { scroll, smooth, timeout, elementId, ...filteredProps } = props;
     return (
-      <As {...filteredProps} onClick={handleClick} ref={ref}>
+      <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
       </As>
     );
@@ -90,6 +120,7 @@ const propTypes = {
   children: PropTypes.node,
   scroll: PropTypes.func,
   timeout: PropTypes.number,
+  elementId: PropTypes.string,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
