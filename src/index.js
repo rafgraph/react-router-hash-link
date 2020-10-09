@@ -90,7 +90,7 @@ export function genericHashLink(As) {
 
     function handleClick(e) {
       reset();
-      hashFragment = linkHash;
+      hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
       if (props.onClick) props.onClick(e);
       if (hashFragment !== '') {
         scrollFunction =
@@ -102,7 +102,7 @@ export function genericHashLink(As) {
         hashLinkScroll(props.timeout);
       }
     }
-    const { scroll, smooth, timeout, ...filteredProps } = props;
+    const { scroll, smooth, timeout, elementId, ...filteredProps } = props;
     return (
       <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
@@ -120,6 +120,7 @@ const propTypes = {
   children: PropTypes.node,
   scroll: PropTypes.func,
   timeout: PropTypes.number,
+  elementId: PropTypes.string,
   to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
 };
 
