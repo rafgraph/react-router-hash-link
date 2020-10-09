@@ -4,9 +4,9 @@
   "description": "Hash link scroll functionality for React Router v4/5",
   "main": "lib/index.js",
   "scripts": {
-    "build": "rm -rf lib && babel src -d lib --presets=env,react --plugins=transform-object-rest-spread",
+    "build": "rm -rf lib && babel src -d lib --presets=@babel/preset-env,@babel/preset-react",
     "prepublish": "yarn build",
-    "dev": "yarn link && babel src -d lib --watch --presets=env,react --plugins=transform-object-rest-spread"
+    "dev": "yarn link && babel src -d lib --watch --presets=@babel/preset-env,@babel/preset-react"
   },
   "files": [
     "src",
@@ -33,14 +33,14 @@
     "react-router-dom": ">=4"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/preset-env": "^7.11.5",
+    "@babel/preset-react": "^7.10.4",
     "prettier": "^2.1.2"
   },
   "dependencies": {
-    "prop-types": "^15.6.0"
+    "prop-types": "^15.7.2"
   },
   "prettier": {
     "trailingComma": "all",
