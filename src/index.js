@@ -19,14 +19,19 @@ function reset() {
 function getElAndScroll() {
   let element = null;
   if (hashFragment === '#') {
-    element = document.documentElement;
+    // use document.body instead of document.documentElement because of a bug in smoothscroll-polyfill in safari
+    // see https://github.com/iamdustan/smoothscroll/issues/138
+    // while smoothscroll-polyfill is not included, it is the recommended way to implement smoothscroll
+    // in browsers that don't natively support el.scrollIntoView({ behavior: 'smooth' })
+    element = document.body;
   } else {
     // check for element with matching id before assume '#top' is the top of the document
     // see https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
     const id = hashFragment.replace('#', '');
     element = document.getElementById(id);
     if (element === null && hashFragment === '#top') {
-      element = document.documentElement;
+      // see above comment for why document.body instead of document.documentElement
+      element = document.body;
     }
   }
 

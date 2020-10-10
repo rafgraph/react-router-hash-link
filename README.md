@@ -72,6 +72,8 @@ import { HashLink } from 'react-router-hash-link';
 ```js
 import { HashLink } from 'react-router-hash-link';
 <HashLink to="/path#top">Link to Top of Page</HashLink>
+// or
+<HashLink to="#top">Link to Top of Page</HashLink>
 ```
 
 ### Scroll with offset
