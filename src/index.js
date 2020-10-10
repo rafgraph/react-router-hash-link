@@ -19,14 +19,14 @@ function reset() {
 function getElAndScroll() {
   let element = null;
   if (hashFragment === '#') {
-    element = document.body;
+    element = document.documentElement;
   } else {
     // check for element with matching id before assume '#top' is the top of the document
     // see https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element
     const id = hashFragment.replace('#', '');
     element = document.getElementById(id);
     if (element === null && hashFragment === '#top') {
-      element = document.body;
+      element = document.documentElement;
     }
   }
 
