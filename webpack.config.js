@@ -1,4 +1,4 @@
-const webpack = require('webpack');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
   entry: `${__dirname}/src/index.js`,
@@ -7,6 +7,8 @@ module.exports = {
     publicPath: '/build/',
     filename: 'bundle.js',
   },
+
+  devtool: process.argv.indexOf('-p') === -1 ? 'eval-source-map' : 'source-map',
 
   module: {
     rules: [
@@ -18,11 +20,22 @@ module.exports = {
     symlinks: false,
   },
 
-  plugins: process.argv.indexOf('-p') === -1 ? [] : [
-    new webpack.optimize.UglifyJsPlugin({
-      output: {
-        comments: false,
+  optimization:
+    process.argv.indexOf('-p') === -1
+      ? {}
+      : {
+        minimize: true,
+        minimizer: [
+          new TerserPlugin({
+            terserOptions: {
+              output: {
+                comments: false,
+              },
+            },
+            extractComments: false,
+          }),
+        ],
       },
-    }),
-  ],
+
+
 };

@@ -1,11 +1,5 @@
 # Dependency directory
 node_modules
 
-# Transpiled lib
-lib
-
-# Source maps
-*.js.map
-
 # Files marked with gitigx
 *gitigx*

@@ -50,7 +50,7 @@ function HashLinkPage({ location }) {
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#section-one`}>Section One</Interactive></Li>
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
           <Li><Interactive as={NavHashLink} smooth {...linkStyle} activeStyle={{ fontWeight: 'bold' }} to={`${location.pathname}#section-three`}>Section Three NavHashLink</Interactive></Li>
-          <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#top`}>Top of Page</Interactive></Li>
+          <Li><Interactive as={HashLink} smooth {...linkStyle} to="#top">Top of Page</Interactive></Li>
         </ul>
       </section>
     </div>
