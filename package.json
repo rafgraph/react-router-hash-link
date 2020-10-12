@@ -4,9 +4,10 @@
   "description": "Hash link scroll functionality for React Router v4/5",
   "main": "lib/index.js",
   "scripts": {
+    "dev": "npm link && npm run watch && npm unlink -g react-router-hash-link",
+    "watch": "trap 'exit 0' SIGINT; babel src -d lib --watch --presets=@babel/preset-env,@babel/preset-react",
     "build": "rm -rf lib && babel src -d lib --presets=@babel/preset-env,@babel/preset-react",
-    "prepublishOnly": "yarn build",
-    "dev": "yarn link && babel src -d lib --watch --presets=@babel/preset-env,@babel/preset-react"
+    "prepublishOnly": "npm run build"
   },
   "files": [
     "src",
