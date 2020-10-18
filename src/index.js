@@ -90,10 +90,7 @@ export function genericHashLink(As) {
     const passDownProps = {};
     if (As === NavLink) {
       passDownProps.isActive = (match, location) => {
-        let locationHash = location.hash;
-        if (location.hash === '') {
-          locationHash = '#';
-        }
+        const locationHash = location.hash === '' ? '#' : location.hash;
         return match && match.isExact && locationHash === linkHash;
       };
     }
