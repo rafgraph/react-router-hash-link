@@ -89,8 +89,13 @@ export function genericHashLink(As) {
 
     const passDownProps = {};
     if (As === NavLink) {
-      passDownProps.isActive = (match, location) =>
-        match && match.isExact && location.hash === linkHash;
+      passDownProps.isActive = (match, location) => {
+        let locationHash = location.hash;
+        if (location.hash === '') {
+          locationHash = '#';
+        }
+        return match && match.isExact && locationHash === linkHash;
+      };
     }
 
     function handleClick(e) {
