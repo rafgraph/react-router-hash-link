@@ -17,7 +17,7 @@ function reset() {
 }
 
 function isInteractiveElement(element) {
-  const interactiveTags = ['A', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
+  const interactiveTags = ['A', 'AREA', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
   return interactiveTags.includes(element.tagName) && !element.hasAttribute('disabled');
 }
 
