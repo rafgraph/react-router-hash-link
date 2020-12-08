@@ -104,3 +104,9 @@ const MyComponent = () => (
   </div>
 );
 ```
+
+## Focus Management
+
+`react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible. For non-interactive elements, it calls `element.focus()` followed by `element.blur()` (using a temporary `tabindex` to ensure that the element can be focused programmatically) so that focus _moves_ to the target element but does not remain on it or trigger any style changes. For interactive elements, it calls `element.focus()` and leaves focus on the target element.
+
+If you would like to leave focus on a non-interactive element - for example, to augment the navigation interaction with a visual focus indicator - you can optionally set a `tabindex` on the target element. `react-router-hash-link` will respect the `tabindex` and leave focus on the target in that case.
