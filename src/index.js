@@ -16,6 +16,13 @@ function reset() {
   }
 }
 
+function isInteractiveElement(element) {
+  const formTags = ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
+  const linkTags = ['A', 'AREA'];
+  return (formTags.includes(element.tagName) && !element.hasAttribute('disabled'))
+    || (linkTags.includes(element.tagName) && element.hasAttribute('href'));
+}
+
 function getElAndScroll() {
   let element = null;
   if (hashFragment === '#') {
@@ -43,11 +50,16 @@ function getElAndScroll() {
     let originalTabIndex = element.getAttribute('tabindex');
     if (originalTabIndex === null) element.setAttribute('tabindex', -1);
     element.focus({ preventScroll: true });
-    // for some reason calling blur() in safari resets the focus region to where it was previously,
-    // if blur() is not called it works in safari, but then are stuck with default focus styles
-    // on an element that otherwise might never had focus styles applied, so not an option
-    element.blur();
-    if (originalTabIndex === null) element.removeAttribute('tabindex');
+    if (originalTabIndex === null) {
+      if (!isInteractiveElement(element)) {
+        // for some reason calling blur() in safari resets the focus region to where it was previously,
+        // if blur() is not called it works in safari, but then are stuck with default focus styles
+        // on an element that otherwise might never had focus styles applied, so not an option
+        element.blur();
+      }
+
+      element.removeAttribute('tabindex');
+    }
 
     reset();
     return true;
