@@ -29,6 +29,8 @@ function HashLinkPage({ location }) {
           <Li><Interactive as={HashLink} {...linkStyle} to="/">Home</Interactive></Li>
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#section-two`}>Section Two</Interactive></Li>
           <Li><Interactive as={HashLink} scroll={el => el.scrollIntoView({ behavior: 'smooth' })} {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
+          <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#focusable-heading`}>Focusable Heading</Interactive></Li>
+          <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#focusable-input`}>Text Input</Interactive></Li>
         </ul>
       </section>
       <section style={objectAssign({ backgroundColor: '#D0D0D0' }, sectionStyle)} id="section-two">
@@ -41,6 +43,8 @@ function HashLinkPage({ location }) {
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#top`}>Top of Page</Interactive></Li>
         </ul>
+        <Interactive as="h3" focusFromTab={{outline: '2px solid rgb(0, 152, 0)'}} style={h3Style} id="focusable-heading" tabIndex="0">This is a focusable <code>h3</code> with a <code>tabindex</code> (linked to from Section One)</Interactive>
+        <Interactive as="input" type="text" focusFromTab={{outline: '2px solid rgb(0, 152, 0)'}} id="focusable-input" />
       </section>
       <section style={objectAssign({ backgroundColor: '#C0C0C0' }, sectionStyle)} id="section-three">
         <h2 style={h2Style}>Section Three</h2>
