@@ -17,8 +17,10 @@ function reset() {
 }
 
 function isInteractiveElement(element) {
-  const interactiveTags = ['A', 'AREA', 'BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
-  return interactiveTags.includes(element.tagName) && !element.hasAttribute('disabled');
+  const formTags = ['BUTTON', 'INPUT', 'SELECT', 'TEXTAREA'];
+  const linkTags = ['A', 'AREA'];
+  return (formTags.includes(element.tagName) && !element.hasAttribute('disabled'))
+    || (linkTags.includes(element.tagName) && element.hasAttribute('href'));
 }
 
 function getElAndScroll() {
