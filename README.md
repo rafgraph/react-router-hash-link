@@ -132,4 +132,4 @@ To recreate this `react-router-hash-link` does the following:
 - For non-focusable elements, it calls `element.focus()` followed by `element.blur()` (using a temporary `tabindex` to ensure that the element can be focused programmatically) so that focus _moves_ to the target element but does not remain on it or trigger any style changes.
 - For focusable elements, it calls `element.focus()` and leaves focus on the target element.
 
-Note that you may find it useful to leave focus on non-interactive elements (by adding a `tabindex`) to augment the navigation action with a visual focus indicator.
+Note that you may find it useful to leave focus on non-interactive elements (by adding a `tabindex` of `-1`) to augment the navigation action with a visual focus indicator.
