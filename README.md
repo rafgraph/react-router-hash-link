@@ -1,6 +1,6 @@
 # React Router Hash Link
 
-***Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafgraph/react-router-hash-link/tree/react-router-v2/3).***
+**_Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafgraph/react-router-hash-link/tree/react-router-v2/3)._**
 
 ![npm](https://img.shields.io/npm/dm/react-router-hash-link?label=npm)
 
@@ -19,6 +19,7 @@ $ npm install --save react-router-hash-link
 ```
 
 ### `<HashLink>`
+
 ```javascript
 // In YourComponent.js
 ...
@@ -28,15 +29,15 @@ import { HashLink } from 'react-router-hash-link';
 <HashLink to="/some/path#with-hash-fragment">Link to Hash Fragment</HashLink>
 ```
 
-
 ### `<NavHashLink>`
+
 ```javascript
 // In YourComponent.js
 ...
 import { NavHashLink } from 'react-router-hash-link';
 ...
 // Use it just like a RRv4/5 <NavLink> (see RRv4/5 api for details)
-// It will be active only if both the path and hash fragment match 
+// It will be active only if both the path and hash fragment match
 <NavHashLink
   to="/some/path#with-hash-fragment"
   activeClassName="selected"
@@ -46,29 +47,40 @@ import { NavHashLink } from 'react-router-hash-link';
 ```
 
 ## Scrolling API
+
 ### `smooth: boolean`
+
 - Smooth scroll to the element
 - React Router Hash Link uses the native Element method `element.scrollIntoView()` for scrolling, and when the `smooth` prop is present it will call it with the smooth option, `element.scrollIntoView({ behavior: 'smooth' })`
 - Note that not all browsers have implemented options for `scrollIntoView` - see [MDN](https://developer.mozilla.org/en-US/docs/Web/API/Element/scrollIntoView) and [Can I Use](https://caniuse.com/#feat=scrollintoview) - there is also a browser [polyfill for smooth scrolling](https://github.com/iamdustan/smoothscroll) which you can install separately so `smooth` will work in all browsers
+
 ```js
 import { HashLink } from 'react-router-hash-link';
-<HashLink smooth to="/path#hash">Link to Hash Fragment</HashLink>
+<HashLink smooth to="/path#hash">
+  Link to Hash Fragment
+</HashLink>;
 ```
 
 ### `scroll: function`
+
 - Custom scroll function called with the element to scroll to, e.g. `const myScrollFn = element => {...}`
 - This allows you to do things like scroll with offset, use a specific smooth scrolling library, or pass in your own options to `scrollIntoView`
+
 ```js
 import { HashLink } from 'react-router-hash-link';
 <HashLink
-    to="/path#hash"
-    scroll={el => el.scrollIntoView({ behavior: 'instant', block: 'end' })}
->Link to Hash Fragment</HashLink>
+  to="/path#hash"
+  scroll={(el) => el.scrollIntoView({ behavior: 'instant', block: 'end' })}
+>
+  Link to Hash Fragment
+</HashLink>;
 ```
 
 ### Scroll to top of page
+
 - To scroll to the top of the page set the hash fragment to `#` (empty) or `#top`
 - This is inline with the [HTML spec](https://html.spec.whatwg.org/multipage/browsing-the-web.html#target-element), also see [MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/a#Linking_to_an_element_on_the_same_page)
+
 ```js
 import { HashLink } from 'react-router-hash-link';
 <HashLink to="/path#top">Link to Top of Page</HashLink>
@@ -77,13 +89,14 @@ import { HashLink } from 'react-router-hash-link';
 ```
 
 ### Scroll with offset
+
 - To scroll with offset use a custom scroll function, one way of doing this can be found [here](https://github.com/rafgraph/react-router-hash-link/issues/25#issuecomment-536688104)
 
 ### `elementId: string`
+
 - Scroll to the element with matching id
 - Used instead of providing a hash fragment as part of the `to` prop, if both are present then the `elementId` will override the `to` prop's hash fragment
 - Note that it is generally recommended to use the `to` prop's hash fragment instead of the `elementId`
-
 
 ## Custom `Link`
 
@@ -110,10 +123,12 @@ const MyComponent = () => (
 `react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible.
 
 The browser native behavior when clicking a hash link is:
-- If the target element is not  focusable, then focus is _moved_ to the target element, but the target element is not focused.
+
+- If the target element is not focusable, then focus is _moved_ to the target element, but the target element is not focused.
 - If the target element is focusable (interactive elements and elements with a `tabindex`), then the target element is focused.
 
 To recreate this `react-router-hash-link` does the following:
+
 - For non-focusable elements, it calls `element.focus()` followed by `element.blur()` (using a temporary `tabindex` to ensure that the element can be focused programmatically) so that focus _moves_ to the target element but does not remain on it or trigger any style changes.
 - For focusable elements, it calls `element.focus()` and leaves focus on the target element.
 
