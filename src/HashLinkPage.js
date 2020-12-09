@@ -19,6 +19,22 @@ function HashLinkPage({ location }) {
   };
   const h2Style = { fontSize: '22px' };
   const h3Style = { fontSize: '18px', marginTop: '2.5vh' };
+  const inputStyle = {
+    style: {
+      backgroundColor: 'white',
+      border: '1px solid black',
+      borderRadius: '0',
+      WebkitAppearance: 'none',
+    },
+    hover: {
+      border: '1px solid rgb(0, 152, 0)',
+    },
+    active: 'hover',
+    focus: {
+      outline: '2px solid rgb(0, 152, 0)',
+      outlineOffset: '-1px',
+    },
+  };
 
   return (
     <div>
@@ -43,8 +59,10 @@ function HashLinkPage({ location }) {
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#section-three`}>Section Three</Interactive></Li>
           <Li><Interactive as={HashLink} smooth {...linkStyle} to={`${location.pathname}#top`}>Top of Page</Interactive></Li>
         </ul>
-        <Interactive as="h3" focusFromTab={{outline: '2px solid rgb(0, 152, 0)'}} style={h3Style} id="focusable-heading" tabIndex="0">This is a focusable <code>h3</code> with a <code>tabindex</code> (linked to from Section One)</Interactive>
-        <Interactive as="input" type="text" focusFromTab={{outline: '2px solid rgb(0, 152, 0)'}} id="focusable-input" />
+        <h3 style={h3Style} id="focusable-heading" tabIndex="-1">This is a <code>h3</code> with a <code>tabindex</code> of <code>-1</code> (linked to from Section One)</h3>
+        {/* <Interactive as="h3" focusFromTab={{ outline: '2px solid rgb(0, 152, 0)' }} style={h3Style} useBrowserCursor id="focusable-heading" tabIndex="-1">This is a <code>h3</code> with a <code>tabindex</code> of <code>-1</code> (linked to from Section One)</Interactive> */}
+        <input type="text" id="focusable-input" style={inputStyle.style} />
+        {/* <Interactive as="input" type="text" id="focusable-input" {...inputStyle} /> */}
       </section>
       <section style={objectAssign({ backgroundColor: '#C0C0C0' }, sectionStyle)} id="section-three">
         <h2 style={h2Style}>Section Three</h2>
