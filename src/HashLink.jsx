@@ -133,14 +133,19 @@ export const HashLink = genericHashLink(Link);
 
 export const NavHashLink = genericHashLink(NavLink);
 
-const propTypes = {
-  onClick: PropTypes.func,
-  children: PropTypes.node,
-  scroll: PropTypes.func,
-  timeout: PropTypes.number,
-  elementId: PropTypes.string,
-  to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-};
-
-HashLink.propTypes = propTypes;
-NavHashLink.propTypes = propTypes;
+if (process.env.NODE_ENV !== 'production') {
+  HashLink.displayName = 'HashLink';
+  NavHashLink.displayName = 'NavHashLink';
+  
+  const propTypes = {
+    onClick: PropTypes.func,
+    children: PropTypes.node,
+    scroll: PropTypes.func,
+    timeout: PropTypes.number,
+    elementId: PropTypes.string,
+    to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+  };
+  
+  HashLink.propTypes = propTypes;
+  NavHashLink.propTypes = propTypes;
+}
