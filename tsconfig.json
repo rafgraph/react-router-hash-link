@@ -1,0 +1,7 @@
+{
+    "extends": "rollpkg/configs/tsconfig.json",
+    "compilerOptions": {
+        "target": "ES5",
+        "declaration": false
+    }
+}
