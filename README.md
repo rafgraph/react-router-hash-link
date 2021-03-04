@@ -25,7 +25,7 @@ $ npm install --save react-router-hash-link
 ...
 import { HashLink } from 'react-router-hash-link';
 ...
-// Use it just like a RRv4/5 <Link> (to can be a string or an object, see RRv4/5 api for details)
+// Use it just like a RRv4/5 <Link> (it can be a string or an object, see RRv4/5 api for details)
 <HashLink to="/some/path#with-hash-fragment">Link to Hash Fragment</HashLink>
 ```
 
