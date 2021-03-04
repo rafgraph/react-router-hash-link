@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "npm link react-router-hash-link && npm start",
     "devCleanup": "npm install --save react-router-hash-link@latest",
-    "start": "webpack-dev-server --host 0.0.0.0 --disable-host-check --history-api-fallback --open",
+    "start": "webpack-dev-server --host 127.0.0.1 --disable-host-check --history-api-fallback --open",
     "build": "npm run devCleanup && rm -rf build && webpack -p"
   },
   "repository": {
