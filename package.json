@@ -38,7 +38,7 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "rollpkg": "^0.5.1",
+    "rollpkg": "0.5.0",
     "typescript": "^4.2.3"
   },
   "prettier": "rollpkg/configs/prettier.json"
