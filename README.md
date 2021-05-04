@@ -1,22 +1,28 @@
 # React Router Hash Link
 
-**_Note that this is for React Router v4/5, for v2/3 see [this solution](https://github.com/rafgraph/react-router-hash-link/tree/react-router-v2/3)._**
-
-![npm](https://img.shields.io/npm/dm/react-router-hash-link?label=npm)
-
-[Demo website](https://react-router-hash-link.rafgraph.dev/) (code on the [`gh-pages` branch](https://github.com/rafgraph/react-router-hash-link/tree/gh-pages))
-
----
+[![npm](https://img.shields.io/npm/dm/react-router-hash-link?label=npm)](https://www.npmjs.com/package/react-router-hash-link) [![npm bundle size (version)](https://img.shields.io/bundlephobia/minzip/react-router-hash-link?color=purple)](https://bundlephobia.com/result?p=react-router-hash-link)
 
 This is a solution to [React Router's issue of not scrolling to `#hash-fragments`](https://github.com/reactjs/react-router/issues/394#issuecomment-220221604) when using the `<Link>` component to navigate.
 
 When you click on a link created with `react-router-hash-link` it will scroll to the element on the page with the `id` that matches the `#hash-fragment` in the link. This will also work for elements that are created after an asynchronous data load. Note that you must use React Router's `BrowserRouter` for this to work.
 
+---
+
+### [Live demo app for React Router Hash Link](https://react-router-hash-link.rafgraph.dev)
+
+Code is in the [`/demo`](/demo) folder.
+
+---
+
+## Basics
+
 ```shell
-$ yarn add react-router-hash-link
-# OR
-$ npm install --save react-router-hash-link
+npm install --save react-router-hash-link
 ```
+
+`react-router-dom` is a peer dependency.
+
+---
 
 ### `<HashLink>`
 
@@ -28,6 +34,8 @@ import { HashLink } from 'react-router-hash-link';
 // Use it just like a RRv4/5 <Link> (to can be a string or an object, see RRv4/5 api for details)
 <HashLink to="/some/path#with-hash-fragment">Link to Hash Fragment</HashLink>
 ```
+
+---
 
 ### `<NavHashLink>`
 
@@ -46,6 +54,8 @@ import { NavHashLink } from 'react-router-hash-link';
 >Link to Hash Fragment</NavHashLink>
 ```
 
+---
+
 ## Scrolling API
 
 ### `smooth: boolean`
@@ -60,6 +70,8 @@ import { HashLink } from 'react-router-hash-link';
   Link to Hash Fragment
 </HashLink>;
 ```
+
+---
 
 ### `scroll: function`
 
@@ -76,6 +88,8 @@ import { HashLink } from 'react-router-hash-link';
 </HashLink>;
 ```
 
+---
+
 ### Scroll to top of page
 
 - To scroll to the top of the page set the hash fragment to `#` (empty) or `#top`
@@ -88,15 +102,21 @@ import { HashLink } from 'react-router-hash-link';
 <HashLink to="#top">Link to Top of Page</HashLink>
 ```
 
+---
+
 ### Scroll with offset
 
 - To scroll with offset use a custom scroll function, one way of doing this can be found [here](https://github.com/rafgraph/react-router-hash-link/issues/25#issuecomment-536688104)
+
+---
 
 ### `elementId: string`
 
 - Scroll to the element with matching id
 - Used instead of providing a hash fragment as part of the `to` prop, if both are present then the `elementId` will override the `to` prop's hash fragment
 - Note that it is generally recommended to use the `to` prop's hash fragment instead of the `elementId`
+
+---
 
 ## Custom `Link`
 
@@ -117,6 +137,8 @@ const MyComponent = () => (
   </div>
 );
 ```
+
+---
 
 ## Focus Management
 

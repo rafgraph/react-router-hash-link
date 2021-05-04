@@ -6,10 +6,10 @@
   "module": "dist/react-router-hash-link.esm.js",
   "sideEffects": false,
   "scripts": {
-    "dev": "npm link && npm run watch && npm unlink -g react-router-hash-link",
     "build": "rollpkg build",
     "watch": "rollpkg watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "lintStaged": "lint-staged"
   },
   "files": [
     "dist"
@@ -38,8 +38,18 @@
     "prop-types": "^15.7.2"
   },
   "devDependencies": {
-    "rollpkg": "^0.5.1",
-    "typescript": "^4.2.3"
+    "lint-staged": "^10.5.4",
+    "pre-commit": "^1.2.2",
+    "react": "file:demo/node_modules/react",
+    "react-router-dom": "file:demo/node_modules/react-router-dom",
+    "rollpkg": "^0.5.5",
+    "typescript": "^4.2.4"
+  },
+  "pre-commit": "lintStaged",
+  "lint-staged": {
+    "(src/**/*|demo/src/**/*)": [
+      "prettier --write --ignore-unknown"
+    ]
   },
   "prettier": "rollpkg/configs/prettier.json"
 }

@@ -1,0 +1,22 @@
+{
+  "name": "react-router-hash-link",
+  "icons": [
+    {
+      "src": "/favicon/green-grid-144-168-192-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/green-grid-144-168-192-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/green-grid-144-168-192.svg",
+      "type": "image/svg+xml"
+    }
+  ],
+  "theme_color": "#000000",
+  "background_color": "#007800",
+  "display": "browser"
+}

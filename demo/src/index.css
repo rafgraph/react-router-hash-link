@@ -1,0 +1,78 @@
+/* normalize behavior on all elements */
+*,
+*::before,
+*::after {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  box-sizing: inherit;
+  font: inherit;
+  font-weight: inherit;
+  text-align: inherit;
+  line-height: inherit;
+  word-break: inherit;
+  color: inherit;
+  background: transparent;
+}
+
+/* set base styles for the app */
+body {
+  color: rgb(0, 0, 0);
+  font-family: system-ui, 'Helvetica Neue', sans-serif;
+  /* use word-break instead of "overflow-wrap: anywhere" because of Safari support */
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 16px;
+  box-sizing: border-box;
+  text-size-adjust: none;
+}
+
+/* pass down height: 100% to the #root div */
+body,
+html {
+  height: 100%;
+}
+#root {
+  min-height: 100%;
+  background-color: rgb(240, 240, 240);
+}
+
+code {
+  font-family: monospace;
+}
+
+a {
+  text-decoration-line: underline;
+  text-decoration-style: dotted;
+  text-decoration-color: hsl(120, 100%, 33%);
+  text-decoration-thickness: from-font;
+}
+a:hover,
+a:active {
+  text-decoration-style: solid;
+}
+
+li {
+  margin: 0.5vh 0;
+  margin-left: 20px;
+  list-style-type: '–  ';
+}
+
+h1 {
+  font-size: 26px;
+}
+
+h2 {
+  font-size: 22px;
+}
+
+h3 {
+  font-size: 18px;
+  margin-top: 2.5vh;
+}
+
+section {
+  padding: 2.5vw 3.5vw 12vh 3.5vw;
+  height: 100vh;
+}
