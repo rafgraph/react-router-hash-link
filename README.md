@@ -10,7 +10,7 @@ When you click on a link created with `react-router-hash-link` it will scroll to
 
 ### [Live demo app for React Router Hash Link](https://react-router-hash-link.rafgraph.dev)
 
-Code is in the [`/demo`](/demo) folder.
+Code is in the [`/demo`](/demo) folder, or open the [demo in CodeSandbox](https://githubbox.com/rafgraph/react-router-hash-link/tree/main/demo)
 
 ---
 
@@ -26,12 +26,13 @@ npm install --save react-router-hash-link
 
 ### `<HashLink>`
 
-```javascript
-// In YourComponent.js
-...
+```js
 import { HashLink } from 'react-router-hash-link';
+
 ...
-// Use it just like a RRv4/5 <Link> (to can be a string or an object, see RRv4/5 api for details)
+
+// use it just like a RRv4/5 <Link>
+// the `to` prop can be a string or an object, see RRv4/5 api for details
 <HashLink to="/some/path#with-hash-fragment">Link to Hash Fragment</HashLink>
 ```
 
@@ -39,13 +40,13 @@ import { HashLink } from 'react-router-hash-link';
 
 ### `<NavHashLink>`
 
-```javascript
-// In YourComponent.js
-...
+```js
 import { NavHashLink } from 'react-router-hash-link';
+
 ...
-// Use it just like a RRv4/5 <NavLink> (see RRv4/5 api for details)
-// It will be active only if both the path and hash fragment match
+
+// use it just like a RRv4/5 <NavLink> (see RRv4/5 api for details)
+// it will be active only if both the path and hash fragment match
 <NavHashLink
   to="/some/path#with-hash-fragment"
   activeClassName="selected"
@@ -66,6 +67,9 @@ import { NavHashLink } from 'react-router-hash-link';
 
 ```js
 import { HashLink } from 'react-router-hash-link';
+
+...
+
 <HashLink smooth to="/path#hash">
   Link to Hash Fragment
 </HashLink>;
@@ -80,6 +84,9 @@ import { HashLink } from 'react-router-hash-link';
 
 ```js
 import { HashLink } from 'react-router-hash-link';
+
+...
+
 <HashLink
   to="/path#hash"
   scroll={(el) => el.scrollIntoView({ behavior: 'instant', block: 'end' })}
@@ -97,6 +104,9 @@ import { HashLink } from 'react-router-hash-link';
 
 ```js
 import { HashLink } from 'react-router-hash-link';
+
+...
+
 <HashLink to="/path#top">Link to Top of Page</HashLink>
 // or
 <HashLink to="#top">Link to Top of Page</HashLink>
