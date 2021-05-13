@@ -107,7 +107,6 @@ export function genericHashLink(As) {
     }
 
     function handleClick(e) {
-      console.log('HREER', e.defaultPrevented, e);
       reset();
       hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
       if (props.onClick) props.onClick(e);
