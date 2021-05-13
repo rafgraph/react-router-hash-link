@@ -107,10 +107,19 @@ export function genericHashLink(As) {
     }
 
     function handleClick(e) {
+      console.log('HREER', e.defaultPrevented, e);
       reset();
       hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
       if (props.onClick) props.onClick(e);
-      if (hashFragment !== '') {
+      if (
+        hashFragment !== '' &&
+        // ignore non-vanilla click events, same as react-router
+        // below logic adapted from react-router: https://github.com/ReactTraining/react-router/blob/fc91700e08df8147bd2bb1be19a299cbb14dbcaa/packages/react-router-dom/modules/Link.js#L43-L48
+        !e.defaultPrevented && // onClick prevented default
+        e.button === 0 && // ignore everything but left clicks
+        (!props.target || props.target === '_self') && // let browser handle "target=_blank" etc
+        !(e.metaKey || e.altKey || e.ctrlKey || e.shiftKey) // ignore clicks with modifier keys
+      ) {
         scrollFunction =
           props.scroll ||
           ((el) =>
@@ -136,7 +145,7 @@ export const NavHashLink = genericHashLink(NavLink);
 if (process.env.NODE_ENV !== 'production') {
   HashLink.displayName = 'HashLink';
   NavHashLink.displayName = 'NavHashLink';
-  
+
   const propTypes = {
     onClick: PropTypes.func,
     children: PropTypes.node,
@@ -145,7 +154,7 @@ if (process.env.NODE_ENV !== 'production') {
     elementId: PropTypes.string,
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
   };
-  
+
   HashLink.propTypes = propTypes;
   NavHashLink.propTypes = propTypes;
 }
