@@ -1,6 +1,6 @@
 {
   "name": "react-router-hash-link",
-  "version": "2.4.2",
+  "version": "2.4.3",
   "description": "Hash link scroll functionality for React Router v4/5",
   "main": "dist/react-router-hash-link.cjs.js",
   "module": "dist/react-router-hash-link.esm.js",
