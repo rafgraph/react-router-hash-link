@@ -89,7 +89,7 @@ import { HashLink } from 'react-router-hash-link';
 
 <HashLink
   to="/path#hash"
-  scroll={(el) => el.scrollIntoView({ behavior: 'instant', block: 'end' })}
+  scroll={(el) => el.scrollIntoView({ behavior: 'auto', block: 'end' })}
 >
   Link to Hash Fragment
 </HashLink>;
