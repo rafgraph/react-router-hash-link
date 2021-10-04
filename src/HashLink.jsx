@@ -21,7 +21,8 @@ function isInteractiveElement(element) {
   const linkTags = ['A', 'AREA'];
   return (
     (formTags.includes(element.tagName) && !element.hasAttribute('disabled')) ||
-    (linkTags.includes(element.tagName) && element.hasAttribute('href'))
+    (linkTags.includes(element.tagName) && element.hasAttribute('href')) ||
+    element.isContentEditable
   );
 }
 
