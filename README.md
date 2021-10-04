@@ -152,7 +152,7 @@ const MyComponent = () => (
 
 ## Focus Management
 
-`react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible.
+`react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible
 
 The browser native behavior when clicking a hash link is:
 
@@ -165,3 +165,7 @@ To recreate this `react-router-hash-link` does the following:
 - For focusable elements, it calls `element.focus()` and leaves focus on the target element.
 
 Note that you may find it useful to leave focus on non-interactive elements (by adding a `tabindex` of `-1`) to augment the navigation action with a visual focus indicator.
+
+### `handleFocus: boolean`
+
+- Optionally disable the focus handling
