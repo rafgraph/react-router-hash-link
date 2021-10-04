@@ -25,7 +25,7 @@ function isInteractiveElement(element) {
   );
 }
 
-function getElAndScroll() {
+function getElAndScroll(handleFocus) {
   let element = null;
   if (hashFragment === '#') {
     // use document.body instead of document.documentElement because of a bug in smoothscroll-polyfill in safari
@@ -47,19 +47,21 @@ function getElAndScroll() {
   if (element !== null) {
     scrollFunction(element);
 
-    // update focus to where the page is scrolled to
-    // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
-    let originalTabIndex = element.getAttribute('tabindex');
-    if (originalTabIndex === null && !isInteractiveElement(element)) {
-      element.setAttribute('tabindex', -1);
-    }
-    element.focus({ preventScroll: true });
-    if (originalTabIndex === null && !isInteractiveElement(element)) {
-      // for some reason calling blur() in safari resets the focus region to where it was previously,
-      // if blur() is not called it works in safari, but then are stuck with default focus styles
-      // on an element that otherwise might never had focus styles applied, so not an option
-      element.blur();
-      element.removeAttribute('tabindex');
+    if (handleFocus) {
+      // update focus to where the page is scrolled to
+      // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
+      let originalTabIndex = element.getAttribute('tabindex');
+      if (originalTabIndex === null && !isInteractiveElement(element)) {
+        element.setAttribute('tabindex', -1);
+      }
+      element.focus({ preventScroll: true });
+      if (originalTabIndex === null && !isInteractiveElement(element)) {
+        // for some reason calling blur() in safari resets the focus region to where it was previously,
+        // if blur() is not called it works in safari, but then are stuck with default focus styles
+        // on an element that otherwise might never had focus styles applied, so not an option
+        element.blur();
+        element.removeAttribute('tabindex');
+      }
     }
 
     reset();
@@ -68,12 +70,12 @@ function getElAndScroll() {
   return false;
 }
 
-function hashLinkScroll(timeout) {
+function hashLinkScroll(timeout, handleFocus) {
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
-    if (getElAndScroll() === false) {
+    if (getElAndScroll(handleFocus) === false) {
       if (observer === null) {
-        observer = new MutationObserver(getElAndScroll);
+        observer = new MutationObserver(() => getElAndScroll(handleFocus));
       }
       observer.observe(document, {
         attributes: true,
@@ -125,10 +127,10 @@ export function genericHashLink(As) {
             props.smooth
               ? el.scrollIntoView({ behavior: 'smooth' })
               : el.scrollIntoView());
-        hashLinkScroll(props.timeout);
+        hashLinkScroll(props.timeout, props.handleFocus);
       }
     }
-    const { scroll, smooth, timeout, elementId, ...filteredProps } = props;
+    const { scroll, smooth, timeout, elementId, handleFocus, ...filteredProps } = props;
     return (
       <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
@@ -152,6 +154,7 @@ if (process.env.NODE_ENV !== 'production') {
     timeout: PropTypes.number,
     elementId: PropTypes.string,
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    handleFocus: PropTypes.bool,
   };
 
   HashLink.propTypes = propTypes;
