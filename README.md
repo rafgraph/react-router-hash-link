@@ -152,7 +152,7 @@ const MyComponent = () => (
 
 ## Focus Management
 
-`react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible
+`react-router-hash-link` attempts to recreate the native browser focusing behavior as closely as possible.
 
 The browser native behavior when clicking a hash link is:
 
