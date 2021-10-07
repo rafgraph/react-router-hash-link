@@ -26,7 +26,7 @@ function isInteractiveElement(element) {
   );
 }
 
-function getElAndScroll(handleFocus) {
+function getElAndScroll(preventFocusHandling) {
   let element = null;
   if (hashFragment === '#') {
     // use document.body instead of document.documentElement because of a bug in smoothscroll-polyfill in safari
@@ -48,7 +48,7 @@ function getElAndScroll(handleFocus) {
   if (element !== null) {
     scrollFunction(element);
 
-    if (handleFocus) {
+    if (!preventFocusHandling) {
       // update focus to where the page is scrolled to
       // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
       let originalTabIndex = element.getAttribute('tabindex');
@@ -71,12 +71,12 @@ function getElAndScroll(handleFocus) {
   return false;
 }
 
-function hashLinkScroll(timeout, handleFocus) {
+function hashLinkScroll(timeout, preventFocusHandling) {
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
-    if (getElAndScroll(handleFocus) === false) {
+    if (getElAndScroll(preventFocusHandling) === false) {
       if (observer === null) {
-        observer = new MutationObserver(() => getElAndScroll(handleFocus));
+        observer = new MutationObserver(() => getElAndScroll(preventFocusHandling));
       }
       observer.observe(document, {
         attributes: true,
@@ -128,10 +128,10 @@ export function genericHashLink(As) {
             props.smooth
               ? el.scrollIntoView({ behavior: 'smooth' })
               : el.scrollIntoView());
-        hashLinkScroll(props.timeout, props.handleFocus);
+        hashLinkScroll(props.timeout, props.preventFocusHandling);
       }
     }
-    const { scroll, smooth, timeout, elementId, handleFocus, ...filteredProps } = props;
+    const { scroll, smooth, timeout, elementId, preventFocusHandling, ...filteredProps } = props;
     return (
       <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
@@ -155,7 +155,7 @@ if (process.env.NODE_ENV !== 'production') {
     timeout: PropTypes.number,
     elementId: PropTypes.string,
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-    handleFocus: PropTypes.bool,
+    preventFocusHandling: PropTypes.bool,
   };
 
   HashLink.propTypes = propTypes;
