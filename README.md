@@ -166,6 +166,6 @@ To recreate this `react-router-hash-link` does the following:
 
 Note that you may find it useful to leave focus on non-interactive elements (by adding a `tabindex` of `-1`) to augment the navigation action with a visual focus indicator.
 
-### `handleFocus: boolean`
+### `preventFocusHandling: boolean`
 
-- Optionally disable the focus handling
+- Optionally prevent the default focus handling
