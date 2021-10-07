@@ -6,9 +6,11 @@ let hashFragment = '';
 let observer = null;
 let asyncTimerId = null;
 let scrollFunction = null;
+let preventFocusHandling = false;
 
 function reset() {
   hashFragment = '';
+  preventFocusHandling = false;
   if (observer !== null) observer.disconnect();
   if (asyncTimerId !== null) {
     window.clearTimeout(asyncTimerId);
@@ -21,7 +23,8 @@ function isInteractiveElement(element) {
   const linkTags = ['A', 'AREA'];
   return (
     (formTags.includes(element.tagName) && !element.hasAttribute('disabled')) ||
-    (linkTags.includes(element.tagName) && element.hasAttribute('href'))
+    (linkTags.includes(element.tagName) && element.hasAttribute('href')) ||
+    element.isContentEditable
   );
 }
 
@@ -47,19 +50,21 @@ function getElAndScroll() {
   if (element !== null) {
     scrollFunction(element);
 
-    // update focus to where the page is scrolled to
-    // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
-    let originalTabIndex = element.getAttribute('tabindex');
-    if (originalTabIndex === null && !isInteractiveElement(element)) {
-      element.setAttribute('tabindex', -1);
-    }
-    element.focus({ preventScroll: true });
-    if (originalTabIndex === null && !isInteractiveElement(element)) {
-      // for some reason calling blur() in safari resets the focus region to where it was previously,
-      // if blur() is not called it works in safari, but then are stuck with default focus styles
-      // on an element that otherwise might never had focus styles applied, so not an option
-      element.blur();
-      element.removeAttribute('tabindex');
+    if (!preventFocusHandling) {
+      // update focus to where the page is scrolled to
+      // unfortunately this doesn't work in safari (desktop and iOS) when blur() is called
+      let originalTabIndex = element.getAttribute('tabindex');
+      if (originalTabIndex === null && !isInteractiveElement(element)) {
+        element.setAttribute('tabindex', -1);
+      }
+      element.focus({ preventScroll: true });
+      if (originalTabIndex === null && !isInteractiveElement(element)) {
+        // for some reason calling blur() in safari resets the focus region to where it was previously,
+        // if blur() is not called it works in safari, but then are stuck with default focus styles
+        // on an element that otherwise might never had focus styles applied, so not an option
+        element.blur();
+        element.removeAttribute('tabindex');
+      }
     }
 
     reset();
@@ -109,6 +114,7 @@ export function genericHashLink(As) {
     function handleClick(e) {
       reset();
       hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
+      preventFocusHandling = !!props.preventFocusHandling;
       if (props.onClick) props.onClick(e);
       if (
         hashFragment !== '' &&
@@ -128,7 +134,7 @@ export function genericHashLink(As) {
         hashLinkScroll(props.timeout);
       }
     }
-    const { scroll, smooth, timeout, elementId, ...filteredProps } = props;
+    const { scroll, smooth, timeout, elementId, preventFocusHandling, ...filteredProps } = props;
     return (
       <As {...passDownProps} {...filteredProps} onClick={handleClick} ref={ref}>
         {props.children}
@@ -152,6 +158,7 @@ if (process.env.NODE_ENV !== 'production') {
     timeout: PropTypes.number,
     elementId: PropTypes.string,
     to: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
+    preventFocusHandling: PropTypes.bool,
   };
 
   HashLink.propTypes = propTypes;

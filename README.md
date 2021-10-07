@@ -165,3 +165,7 @@ To recreate this `react-router-hash-link` does the following:
 - For focusable elements, it calls `element.focus()` and leaves focus on the target element.
 
 Note that you may find it useful to leave focus on non-interactive elements (by adding a `tabindex` of `-1`) to augment the navigation action with a visual focus indicator.
+
+### `preventFocusHandling: boolean`
+
+- Optionally prevent the default focus handling
