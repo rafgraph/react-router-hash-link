@@ -6,9 +6,11 @@ let hashFragment = '';
 let observer = null;
 let asyncTimerId = null;
 let scrollFunction = null;
+let preventFocusHandling = false;
 
 function reset() {
   hashFragment = '';
+  preventFocusHandling = false;
   if (observer !== null) observer.disconnect();
   if (asyncTimerId !== null) {
     window.clearTimeout(asyncTimerId);
@@ -26,7 +28,7 @@ function isInteractiveElement(element) {
   );
 }
 
-function getElAndScroll(preventFocusHandling) {
+function getElAndScroll() {
   let element = null;
   if (hashFragment === '#') {
     // use document.body instead of document.documentElement because of a bug in smoothscroll-polyfill in safari
@@ -71,12 +73,12 @@ function getElAndScroll(preventFocusHandling) {
   return false;
 }
 
-function hashLinkScroll(timeout, preventFocusHandling) {
+function hashLinkScroll(timeout) {
   // Push onto callback queue so it runs after the DOM is updated
   window.setTimeout(() => {
-    if (getElAndScroll(preventFocusHandling) === false) {
+    if (getElAndScroll() === false) {
       if (observer === null) {
-        observer = new MutationObserver(() => getElAndScroll(preventFocusHandling));
+        observer = new MutationObserver(getElAndScroll);
       }
       observer.observe(document, {
         attributes: true,
@@ -112,6 +114,7 @@ export function genericHashLink(As) {
     function handleClick(e) {
       reset();
       hashFragment = props.elementId ? `#${props.elementId}` : linkHash;
+      preventFocusHandling = !!props.preventFocusHandling;
       if (props.onClick) props.onClick(e);
       if (
         hashFragment !== '' &&
@@ -128,7 +131,7 @@ export function genericHashLink(As) {
             props.smooth
               ? el.scrollIntoView({ behavior: 'smooth' })
               : el.scrollIntoView());
-        hashLinkScroll(props.timeout, props.preventFocusHandling);
+        hashLinkScroll(props.timeout);
       }
     }
     const { scroll, smooth, timeout, elementId, preventFocusHandling, ...filteredProps } = props;
